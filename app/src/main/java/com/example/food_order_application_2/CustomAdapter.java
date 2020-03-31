@@ -1,10 +1,12 @@
 package com.example.food_order_application_2;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -40,6 +42,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         holder.name.setText(data.get(position).getName());
         holder.price.setText(data.get(position).getPrice() + "$");
         Picasso.get().load(link).into(holder.imageView);
+
     }
 
     @Override
@@ -49,13 +52,15 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView name, price,texTv;
-        //ElegantNumberButton btnNumberCount;
+        LinearLayout linearLayout;
         ImageView imageView;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.nameProduct);
             price = itemView.findViewById(R.id.priceProduct);
             imageView = itemView.findViewById(R.id.imageViewFood);
+            linearLayout = itemView.findViewById(R.id.clickLayout);
            // btnNumberCount = itemView.findViewById(R.id.number_counter);
         }
     }

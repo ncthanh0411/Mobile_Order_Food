@@ -15,8 +15,13 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 //import com.google.firebase.database.DatabaseReference;
 //import com.google.firebase.database.FirebaseDatabase;
 //import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
-
+import com.example.food_order_application_2.Model.food;
 public class activity_food_detail_demo extends AppCompatActivity {
 
     TextView food_name, food_price, food_description;
@@ -24,7 +29,7 @@ public class activity_food_detail_demo extends AppCompatActivity {
     CollapsingToolbarLayout collapsingToolbarLayout;
     FloatingActionButton btn_cart;
     ElegantNumberButton numberButton;
-
+    DatabaseReference foods;
     String foodID = "";
 
     //FirebaseDatabase database;
@@ -36,8 +41,7 @@ public class activity_food_detail_demo extends AppCompatActivity {
         setContentView(R.layout.activity_food_detail_demo);
 
         //Firebase
-        //database = FirebaseDatabase.getInstance();
-        //foods = database.getReference("Foods");
+        foods = FirebaseDatabase.getInstance().getReference("food_menu");
 
         numberButton = findViewById(R.id.number_button);
         btn_cart = findViewById(R.id.btnCart);
@@ -55,32 +59,29 @@ public class activity_food_detail_demo extends AppCompatActivity {
         if (getIntent() != null) {
             foodID = getIntent().getStringExtra("FoodID");
         }
-        if (foodID.isEmpty()) {
+        if (!foodID.isEmpty()) {
             getDetailFood(foodID);
         }
     }
 
     private void getDetailFood(String foodID) {
-//        foods.child(foodID).addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                Food food = dataSnapshot.getValue((Food.class));
-//
-//                Picasso.get().load(food.getImage()).into(food_image);
-//
-//                collapsingToolbarLayout.setTitle(food.getName());
-//
-//                food_price.setText(food.getPrice());
-//
-//                food_name.setText(food.getName());
-//
-//                food_description.setText(food.getDescription());
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
+        foods.child(foodID).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                food food = dataSnapshot.getValue((food.class));
+
+                Picasso.get().load(food.getImg()).into(food_image);
+
+                collapsingToolbarLayout.setTitle(food.getName());
+                food_price.setText(food.getPrice() +"");
+                food_name.setText(food.getName());
+                food_description.setText(food.getDetail());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 }
