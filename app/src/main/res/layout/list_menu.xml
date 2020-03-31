@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp">
+
+    <ImageView
+        android:id="@+id/imageViewFood"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:srcCompat="@drawable/custom_button_minus"
+        android:paddingRight="10dp"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/nameProduct"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:text="Fried Chicken"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/textv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:text="Served from 8:00AM" />
+
+        <TextView
+            android:id="@+id/priceProduct"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:text="100$" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+
+
+        <Button
+            android:id="@+id/button_minus"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:background="@drawable/custom_button_minus"
+            android:text="-"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            android:layout_marginRight="70dp"/>
+
+        <TextView
+            android:id="@+id/textView_amount_value"
+            android:layout_width="87dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="0"
+            android:textSize="18sp"
+            android:layout_marginRight="4dp"
+            />
+
+        <Button
+            android:id="@+id/button_plus"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/custom_button_minus"
+            android:text="+"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            />
+    </RelativeLayout>
+
+</LinearLayout>

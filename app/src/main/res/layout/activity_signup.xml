@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/login"
+    tools:context=".activity_Login_signup">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true">
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            app:srcCompat="@drawable/tstlogo"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:id="@+id/txtBrand"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-40dp"
+            android:fontFamily="sans-serif-black"
+            android:text="Eat is addictive "
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="30dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/signup_phoneTIL"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:background="#81636058"
+            android:textColorHint="@android:color/tertiary_text_light">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/signup_phoneEt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_action_username"
+                android:hint="Enter your phone number"
+                android:textColor="@android:color/white"
+                android:inputType="number"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/signup_mailTIL"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:background="#81636058"
+            android:textColorHint="@android:color/tertiary_text_light">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/signup_mailEt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_action_username"
+                android:hint="Enter your mail"
+                android:textColor="@android:color/white"
+                android:inputType="textEmailAddress"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/signup_nameTIL"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:background="#81636058"
+            android:textColorHint="@android:color/tertiary_text_light">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/signup_nameEt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_action_mail"
+                android:hint="Enter your name"
+                android:textColor="@android:color/white"
+                android:inputType="text"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/signup_passwordTIL"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:background="#81636058"
+            android:textColorHint="@android:color/tertiary_text_light">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/signup_passwordEt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_action_password"
+                android:hint="Enter your password"
+                android:textColor="@android:color/white"
+                android:inputType="textPassword"/>
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
+
+
+        <Button
+            android:id="@+id/btnSignUp"
+            android:layout_marginTop="400px"
+            android:layout_width="600px"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/linearLayout2"
+            android:background="@drawable/custom_button"
+            android:text="Register"
+            android:textColor="@android:color/white" />
+
+
+</RelativeLayout>
