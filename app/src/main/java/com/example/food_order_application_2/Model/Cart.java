@@ -2,14 +2,12 @@ package com.example.food_order_application_2.Model;
 
 public class Cart {
     String ProductId;
-    String ProductName;
-    int Price;
+    String UserID;
     int Quantity;
 
-    public Cart(String productId, String productName, int price, int quantity) {
+    public Cart(String productId, String userID, int quantity) {
         ProductId = productId;
-        ProductName = productName;
-        Price = price;
+        UserID = userID;
         Quantity = quantity;
     }
 
@@ -21,20 +19,12 @@ public class Cart {
         ProductId = productId;
     }
 
-    public String getProductName() {
-        return ProductName;
+    public String getUserID() {
+        return UserID;
     }
 
-    public void setProductName(String productName) {
-        ProductName = productName;
-    }
-
-    public int getPrice() {
-        return Price;
-    }
-
-    public void setPrice(int price) {
-        Price = price;
+    public void setUserID(String userID) {
+        UserID = userID;
     }
 
     public int getQuantity() {
