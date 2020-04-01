@@ -1,8 +1,11 @@
 package com.example.food_order_application_2;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,11 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-//import com.google.firebase.database.DataSnapshot;
-//import com.google.firebase.database.DatabaseError;
-//import com.google.firebase.database.DatabaseReference;
-//import com.google.firebase.database.FirebaseDatabase;
-//import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,7 +25,7 @@ public class activity_food_detail_demo extends AppCompatActivity {
     TextView food_name, food_price, food_description;
     ImageView food_image;
     CollapsingToolbarLayout collapsingToolbarLayout;
-    FloatingActionButton btn_cart;
+    FloatingActionButton btn_cart, btn_back;
     ElegantNumberButton numberButton;
     DatabaseReference foods;
     String foodID = "";
@@ -45,6 +43,7 @@ public class activity_food_detail_demo extends AppCompatActivity {
 
         numberButton = findViewById(R.id.number_button);
         btn_cart = findViewById(R.id.btnCart);
+        btn_back = findViewById(R.id.btnBack);
 
         food_description = findViewById(R.id.food_description);
         food_name = findViewById(R.id.food_name);
@@ -56,12 +55,32 @@ public class activity_food_detail_demo extends AppCompatActivity {
         collapsingToolbarLayout.setCollapsedTitleTextAppearance(R.style.CollapsedAppBar);
 
 
+        //Check intent
         if (getIntent() != null) {
             foodID = getIntent().getStringExtra("FoodID");
         }
         if (!foodID.isEmpty()) {
             getDetailFood(foodID);
         }
+
+
+        //Back to menu food intent
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(activity_food_detail_demo.this, activity_menu.class);
+                startActivity(intent);
+            }
+        });
+
+        btn_cart.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(activity_food_detail_demo.this, "Added to cart", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(activity_food_detail_demo.this, activity_menu.class);
+                    startActivity(intent);
+                }
+        });
     }
 
     private void getDetailFood(String foodID) {

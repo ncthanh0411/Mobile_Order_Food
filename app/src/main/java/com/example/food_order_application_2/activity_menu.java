@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -33,12 +34,24 @@ public class activity_menu extends AppCompatActivity {
     CustomAdapter adapter;
     DatabaseReference mData;
     ArrayList<String> key;
+    Button btn_cart;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menufood);
         key = new ArrayList<>();
         initView();
+
+        //btn cart
+        btn_cart = findViewById(R.id.btn_cart);
+        btn_cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent2 = new Intent(activity_menu.this, activity_cart_detail.class);
+                startActivity(intent2);
+            }
+        });
 
     }
     private void initView() {
