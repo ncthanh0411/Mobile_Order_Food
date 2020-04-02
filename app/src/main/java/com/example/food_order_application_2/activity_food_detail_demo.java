@@ -68,8 +68,13 @@ public class activity_food_detail_demo extends AppCompatActivity {
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(activity_food_detail_demo.this, activity_menu.class);
-                startActivity(intent);
+                //Intent intent = new Intent(activity_food_detail_demo.this, activity_menu.class);
+                //startActivity(intent);
+
+                Intent replyIntent = new Intent();
+                replyIntent.putExtra("result","cc");
+                setResult(RESULT_OK,replyIntent);
+                finish();
             }
         });
 

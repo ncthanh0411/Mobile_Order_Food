@@ -118,7 +118,7 @@ public class activity_Login extends AppCompatActivity {
                         progressDialog.dismiss();
                         Toast.makeText(activity_Login.this,"Successful",Toast.LENGTH_LONG).show();
                         FirebaseUser user = mAuthentication.getCurrentUser();
-                        Intent intent_foodmenu = new Intent(activity_Login.this, activity_menu.class);
+                        Intent intent_foodmenu = new Intent(activity_Login.this, activity_bottomNav.class);
                         startActivity(intent_foodmenu);
                     } else {
                         // If sign in fails, display a message to the user.

@@ -5,14 +5,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.GestureDetector;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -27,7 +30,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
-public class activity_menu extends AppCompatActivity {
+import static android.app.Activity.RESULT_OK;
+
+public class activity_menu extends Fragment {
 
     ArrayList<food> data;
     RecyclerView recyclerView;
@@ -36,26 +41,42 @@ public class activity_menu extends AppCompatActivity {
     ArrayList<String> key;
     Button btn_cart;
 
+    @Nullable
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menufood);
-        key = new ArrayList<>();
-        initView();
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
+        View  view  = inflater.inflate(R.layout.activity_menufood, container, false);
+        key = new ArrayList<>();
+        recyclerView = view.findViewById(R.id.recyclerView);
+        initView();
         //btn cart
-        btn_cart = findViewById(R.id.btn_cart);
+        btn_cart = view.findViewById(R.id.btn_cart);
+
+        //Set button visible
+        //btn_cart.setVisibility(View.GONE);
+
         btn_cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent2 = new Intent(activity_menu.this, activity_cart_detail.class);
+                Intent intent2 = new Intent(getActivity(), activity_cart_detail.class);
                 startActivity(intent2);
             }
         });
 
+        return view;
     }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == RESULT_OK)
+        {
+
+        }
+    }
+
     private void initView() {
-        recyclerView = findViewById(R.id.recyclerView);
+
         recyclerView.setHasFixedSize(true);
         data = new ArrayList<>();
         mData = FirebaseDatabase.getInstance().getReference("food_menu");
@@ -99,21 +120,22 @@ public class activity_menu extends AppCompatActivity {
         });
 
         recyclerView.setLayoutManager(new LinearLayoutManager(
-                activity_menu.this,
+                getActivity(),
                 LinearLayoutManager.VERTICAL,
                 false));
-        adapter = new CustomAdapter(data,activity_menu.this);
+        adapter = new CustomAdapter(data,getActivity());
         recyclerView.setAdapter(adapter);
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, LinearLayoutManager.VERTICAL);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL);
         recyclerView.addItemDecoration(dividerItemDecoration);
 
         recyclerView.addOnItemTouchListener(
-                new RecyclerItemClickListener(activity_menu.this, recyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
+                new RecyclerItemClickListener(getActivity(), recyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
                     @Override public void onItemClick(View view, int position) {
                         // do whatever
-                        Intent intent = new Intent(activity_menu.this, activity_food_detail_demo.class);
+                        Intent intent = new Intent(getActivity(), activity_food_detail_demo.class);
                         intent.putExtra("FoodID", key.get(position));
-                        startActivity(intent);
+                        //startActivity(intent);
+                        startActivityForResult(intent,1);
 
                     }
 

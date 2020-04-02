@@ -11,11 +11,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity_cart_detail"></activity>
+        <activity android:name=".activity_bottomNav">
+       </activity>
+        <activity android:name=".activity_cart_detail" />
         <activity android:name=".activity_food_detail_demo" />
         <activity android:name=".activity_menu" />
         <activity android:name=".activity_Login_signup" />
-        <activity android:name=".activity_Login">
+
+            <activity
+                android:name=".activity_Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
