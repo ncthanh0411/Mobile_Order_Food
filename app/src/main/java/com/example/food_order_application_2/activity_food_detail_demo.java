@@ -72,8 +72,8 @@ public class activity_food_detail_demo extends AppCompatActivity {
                 //startActivity(intent);
 
                 Intent replyIntent = new Intent();
-                replyIntent.putExtra("result","cc");
-                setResult(RESULT_OK,replyIntent);
+                //replyIntent.putExtra("result","cc");
+                //setResult(RESULT_OK,replyIntent);
                 finish();
             }
         });
@@ -81,9 +81,10 @@ public class activity_food_detail_demo extends AppCompatActivity {
         btn_cart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(activity_food_detail_demo.this, "Added to cart", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(activity_food_detail_demo.this, activity_menu.class);
-                    startActivity(intent);
+                    Intent replyIntent = new Intent();
+                    replyIntent.putExtra("result","cc");
+                    setResult(RESULT_OK,replyIntent);
+                    finish();
                 }
         });
     }

@@ -38,10 +38,10 @@ public class activity_bottomNav extends AppCompatActivity {
                     Fragment selectedFragment = null;
                     switch (item.getItemId()){
                         case R.id.navigation_home:
-                            selectedFragment = new activity_menu();
+                            selectedFragment = new HomeFragment();
                             break;
                         case R.id.navigation_dashboard:
-                            selectedFragment = new DashboardFragment();
+                            selectedFragment = new activity_menu();
                             break;
                         case R.id.navigation_notifications:
                             selectedFragment = new NotificationsFragment();

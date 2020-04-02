@@ -125,8 +125,6 @@ public class activity_menu extends Fragment {
                 false));
         adapter = new CustomAdapter(data,getActivity());
         recyclerView.setAdapter(adapter);
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL);
-        recyclerView.addItemDecoration(dividerItemDecoration);
 
         recyclerView.addOnItemTouchListener(
                 new RecyclerItemClickListener(getActivity(), recyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
@@ -188,6 +186,8 @@ public class activity_menu extends Fragment {
         @Override public void onTouchEvent(RecyclerView view, MotionEvent motionEvent) { }
 
         @Override
-        public void onRequestDisallowInterceptTouchEvent (boolean disallowIntercept){}
+        public void onRequestDisallowInterceptTouchEvent (boolean disallowIntercept){
+
+        }
     }
 }

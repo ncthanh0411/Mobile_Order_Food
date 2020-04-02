@@ -41,8 +41,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         String link = data.get(position).getImg();
         holder.name.setText(data.get(position).getName());
         holder.price.setText(data.get(position).getPrice() + "$");
-        Picasso.get().load(link).into(holder.imageView);
-
+        Picasso.get().load(link).resizeDimen(R.dimen.image_size, R.dimen.image_size).into(holder.imageView);
     }
 
     @Override
@@ -60,7 +59,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             name = itemView.findViewById(R.id.nameProduct);
             price = itemView.findViewById(R.id.priceProduct);
             imageView = itemView.findViewById(R.id.imageViewFood);
-            linearLayout = itemView.findViewById(R.id.clickLayout);
+            //linearLayout = itemView.findViewById(R.id.clickLayout);
            // btnNumberCount = itemView.findViewById(R.id.number_counter);
         }
     }
