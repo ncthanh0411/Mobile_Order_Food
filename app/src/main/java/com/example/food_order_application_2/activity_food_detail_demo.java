@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
+import com.example.food_order_application_2.Model.Cart;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
@@ -29,6 +30,7 @@ public class activity_food_detail_demo extends AppCompatActivity {
     ElegantNumberButton numberButton;
     DatabaseReference foods;
     String foodID = "";
+    Integer quantity;
 
     //FirebaseDatabase database;
     //DatabaseReference foods;
@@ -53,7 +55,7 @@ public class activity_food_detail_demo extends AppCompatActivity {
         collapsingToolbarLayout = findViewById(R.id.collapsing);
         collapsingToolbarLayout.setExpandedTitleTextAppearance(R.style.ExpandedAppBar);
         collapsingToolbarLayout.setCollapsedTitleTextAppearance(R.style.CollapsedAppBar);
-
+        quantity = Integer.parseInt(numberButton.getNumber());
 
         //Check intent
         if (getIntent() != null) {
@@ -63,17 +65,18 @@ public class activity_food_detail_demo extends AppCompatActivity {
             getDetailFood(foodID);
         }
 
+        numberButton.setOnClickListener(new ElegantNumberButton.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                quantity = Integer.parseInt(numberButton.getNumber());
+            }
+        });
 
         //Back to menu food intent
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(activity_food_detail_demo.this, activity_menu.class);
-                //startActivity(intent);
 
-                Intent replyIntent = new Intent();
-                //replyIntent.putExtra("result","cc");
-                //setResult(RESULT_OK,replyIntent);
                 finish();
             }
         });
@@ -81,8 +84,9 @@ public class activity_food_detail_demo extends AppCompatActivity {
         btn_cart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Cart cart  = new Cart(foodID,quantity);
                     Intent replyIntent = new Intent();
-                    replyIntent.putExtra("result","cc");
+                    replyIntent.putExtra("result",cart);
                     setResult(RESULT_OK,replyIntent);
                     finish();
                 }

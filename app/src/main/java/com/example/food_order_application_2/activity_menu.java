@@ -20,12 +20,15 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.food_order_application_2.Model.Cart;
 import com.example.food_order_application_2.Model.food;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,13 +37,17 @@ import static android.app.Activity.RESULT_OK;
 
 public class activity_menu extends Fragment {
 
-    ArrayList<food> data;
-    RecyclerView recyclerView;
-    CustomAdapter adapter;
-    DatabaseReference mData;
-    ArrayList<String> key;
-    Button btn_cart;
-
+    private ArrayList<food> data;
+    private RecyclerView recyclerView;
+    private CustomAdapter adapter;
+    private DatabaseReference mData;
+    private ArrayList<String> key;
+    private Button btn_cart;
+    private Cart order;
+    ArrayList<Cart> save_order;
+    Integer total = 0;
+    Integer totalPrice = 0;
+    Boolean button_appear = false;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -52,8 +59,10 @@ public class activity_menu extends Fragment {
         //btn cart
         btn_cart = view.findViewById(R.id.btn_cart);
 
-        //Set button visible
-        //btn_cart.setVisibility(View.GONE);
+        //Set button cart visible, button_appear is used to check if btn_cart appear or not
+        if(button_appear == false) {
+            btn_cart.setVisibility(View.GONE);
+        }
 
         btn_cart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,6 +80,31 @@ public class activity_menu extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode == RESULT_OK)
         {
+            DatabaseReference foods = FirebaseDatabase.getInstance().getReference("food_menu");
+            // button cart appear
+            btn_cart.setVisibility(View.VISIBLE);
+            button_appear = true;
+
+            save_order = new ArrayList<>();
+            order = (Cart) data.getSerializableExtra("result");
+
+            foods.child(order.getProductId()).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    food food = dataSnapshot.getValue((food.class));
+
+                    totalPrice = food.getPrice()*order.getQuantity();
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                }
+            });
+
+            total += order.getQuantity();
+            save_order.add(new Cart(order.getProductId(),order.getQuantity()));
+            btn_cart.setText("Total Foods: "+ total + ", Total Price:" + totalPrice +"$");
+
 
         }
     }

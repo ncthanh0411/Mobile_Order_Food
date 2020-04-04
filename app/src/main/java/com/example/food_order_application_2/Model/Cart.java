@@ -1,13 +1,13 @@
 package com.example.food_order_application_2.Model;
 
-public class Cart {
+import java.io.Serializable;
+
+public class Cart implements Serializable {
     String ProductId;
-    String UserID;
     int Quantity;
 
-    public Cart(String productId, String userID, int quantity) {
+    public Cart(String productId, int quantity) {
         ProductId = productId;
-        UserID = userID;
         Quantity = quantity;
     }
 
@@ -17,14 +17,6 @@ public class Cart {
 
     public void setProductId(String productId) {
         ProductId = productId;
-    }
-
-    public String getUserID() {
-        return UserID;
-    }
-
-    public void setUserID(String userID) {
-        UserID = userID;
     }
 
     public int getQuantity() {

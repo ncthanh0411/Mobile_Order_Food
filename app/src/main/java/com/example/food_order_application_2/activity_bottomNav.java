@@ -27,7 +27,7 @@ public class activity_bottomNav extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
+                R.id.navigation_home, R.id.navigation_menu, R.id.navigation_account)
                 .build();
 
     }
@@ -40,10 +40,10 @@ public class activity_bottomNav extends AppCompatActivity {
                         case R.id.navigation_home:
                             selectedFragment = new HomeFragment();
                             break;
-                        case R.id.navigation_dashboard:
+                        case R.id.navigation_menu:
                             selectedFragment = new activity_menu();
                             break;
-                        case R.id.navigation_notifications:
+                        case R.id.navigation_account:
                             selectedFragment = new NotificationsFragment();
                             break;
                     }
