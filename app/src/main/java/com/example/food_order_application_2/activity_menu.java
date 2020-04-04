@@ -44,9 +44,8 @@ public class activity_menu extends Fragment {
     private ArrayList<String> key;
     private Button btn_cart;
     private Cart order;
-    ArrayList<Cart> save_order;
+    ArrayList<Cart> save_order = new ArrayList<>();
     Integer total = 0;
-    Integer totalPrice = 0;
     Boolean button_appear = false;
     @Nullable
     @Override
@@ -68,6 +67,7 @@ public class activity_menu extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent2 = new Intent(getActivity(), activity_cart_detail.class);
+                intent2.putExtra("result",save_order);
                 startActivity(intent2);
             }
         });
@@ -85,25 +85,11 @@ public class activity_menu extends Fragment {
             btn_cart.setVisibility(View.VISIBLE);
             button_appear = true;
 
-            save_order = new ArrayList<>();
-            order = (Cart) data.getSerializableExtra("result");
 
-            foods.child(order.getProductId()).addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    food food = dataSnapshot.getValue((food.class));
-
-                    totalPrice = food.getPrice()*order.getQuantity();
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-                }
-            });
-
+            order = data.getParcelableExtra("result");
             total += order.getQuantity();
             save_order.add(new Cart(order.getProductId(),order.getQuantity()));
-            btn_cart.setText("Total Foods: "+ total + ", Total Price:" + totalPrice +"$");
+            btn_cart.setText("Total Foods: "+ total);
 
 
         }

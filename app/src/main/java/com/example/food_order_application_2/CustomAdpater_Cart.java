@@ -34,7 +34,7 @@ public class CustomAdpater_Cart extends RecyclerView.Adapter<CustomAdpater_Cart.
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.tv_quan.setText(data.get(position).getQuantity());
+        holder.tv_quan.setText(data.get(position).getQuantity() + "");
 
     }
 

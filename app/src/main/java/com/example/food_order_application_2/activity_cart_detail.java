@@ -45,15 +45,18 @@ public class activity_cart_detail extends AppCompatActivity {
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(activity_cart_detail.this, activity_menu.class);
-                startActivity(intent);
+                finish();
             }
         });
 
 
         ////////
         recyclerView.setHasFixedSize(true);
-        data = new ArrayList<>();
+        //Receive data from activity_menu
+        Intent intent =getIntent();
+        data = intent.getParcelableArrayListExtra("result");
+
+
         mData = FirebaseDatabase.getInstance().getReference("User");
 
         mData.addValueEventListener(new ValueEventListener() {
