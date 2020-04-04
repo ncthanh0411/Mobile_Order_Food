@@ -2,12 +2,16 @@ package com.example.food_order_application_2.Model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.widget.Toast;
 
 import java.io.Serializable;
 
 public class Cart implements Parcelable {
     String ProductId;
     int Quantity;
+
+    public Cart() {
+    }
 
     public Cart(String productId, int quantity) {
         ProductId = productId;

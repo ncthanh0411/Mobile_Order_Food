@@ -42,7 +42,7 @@ public class CustomAdpater_Cart extends RecyclerView.Adapter<CustomAdpater_Cart.
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, int position) {
         DatabaseReference foods = FirebaseDatabase.getInstance().getReference("food_menu");
-        holder.tv_quan.setText("Quantity: " + data.get(position).getQuantity() + "");
+        holder.tv_quan.setText("Quantity: " + data.get(position).getQuantity());
         foods.child(data.get(position).getProductId()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

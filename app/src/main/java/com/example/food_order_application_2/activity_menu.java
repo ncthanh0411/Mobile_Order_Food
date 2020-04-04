@@ -47,6 +47,8 @@ public class activity_menu extends Fragment {
     ArrayList<Cart> save_order = new ArrayList<>();
     Integer total = 0;
     Boolean button_appear = false;
+    int sum = 0;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -68,6 +70,7 @@ public class activity_menu extends Fragment {
             public void onClick(View v) {
                 Intent intent2 = new Intent(getActivity(), activity_cart_detail.class);
                 intent2.putExtra("result",save_order);
+                intent2.putExtra("price", sum);
                 startActivity(intent2);
             }
         });
@@ -88,10 +91,10 @@ public class activity_menu extends Fragment {
 
             order = data.getParcelableExtra("result");
             total += order.getQuantity();
-            save_order.add(new Cart(order.getProductId(),order.getQuantity()));
-            btn_cart.setText("Total Foods: "+ total);
+            sum += data.getIntExtra("price", 1);
+            save_order.add(new Cart(order.getProductId(), order.getQuantity()));
 
-
+            btn_cart.setText("Total item: "+ total + " - Total price: " + sum + "$");
         }
     }
 

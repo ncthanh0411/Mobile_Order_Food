@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.food_order_application_2.Model.Cart;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -25,13 +26,13 @@ public class activity_cart_detail extends AppCompatActivity {
 
     Button btn_order;
     FloatingActionButton btn_back;
+    TextView textView_total;
 
     ArrayList<Cart> data;
     RecyclerView recyclerView;
     CustomAdpater_Cart adapter_cart;
 
     DatabaseReference mData;
-    ArrayList<String> key;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +42,7 @@ public class activity_cart_detail extends AppCompatActivity {
         btn_back = findViewById(R.id.btnBack);
         btn_order = findViewById(R.id.btn_order);
         recyclerView = findViewById(R.id.recyclerView);
+        textView_total = findViewById(R.id.textView_total);
 
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,12 +51,14 @@ public class activity_cart_detail extends AppCompatActivity {
             }
         });
 
-
         ////////
         recyclerView.setHasFixedSize(true);
         //Receive data from activity_menu
-        Intent intent =getIntent();
+        Intent intent = getIntent();
         data = intent.getParcelableArrayListExtra("result");
+        int sum = intent.getIntExtra("price", 1);
+
+        textView_total.setText("Total price: " + sum + "$ ");
 
 
         mData = FirebaseDatabase.getInstance().getReference("User");

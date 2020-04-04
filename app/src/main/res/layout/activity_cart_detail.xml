@@ -25,6 +25,7 @@
             app:useCompatPadding="true"
             app:backgroundTint="@color/transparent"/>
 
+
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
@@ -53,6 +54,18 @@
         tools:layout_editor_absoluteX="0dp">
 
     </androidx.recyclerview.widget.RecyclerView>
+
+    <TextView
+        android:id="@+id/textView_total"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:gravity="right"
+        android:text="Total"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/btn_order"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btn_order"
