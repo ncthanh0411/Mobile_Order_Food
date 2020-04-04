@@ -28,18 +28,18 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/textView_quan"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="Quantity: " />
-
-        <TextView
             android:id="@+id/textView_price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:text="Price" />
+
+        <TextView
+            android:id="@+id/textView_quan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="Quantity: " />
 
     </LinearLayout>
 </LinearLayout>

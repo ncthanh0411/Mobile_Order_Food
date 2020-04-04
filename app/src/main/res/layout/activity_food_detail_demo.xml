@@ -33,15 +33,15 @@
                 app:expandedTitleTextAppearance="@android:color/transparent">
 
             <ImageView
-                    android:id="@+id/img_food"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:contentDescription="@null"
-                    android:scaleType="centerCrop"
-                    app:layout_collapseMode="parallax"
-                    app:srcCompat="@drawable/demo_picture" />
-                
-                <androidx.appcompat.widget.Toolbar
+                android:id="@+id/img_food"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@null"
+                android:scaleType="centerCrop"
+                app:layout_collapseMode="parallax"
+                app:srcCompat="@drawable/demo_picture" />
+
+            <androidx.appcompat.widget.Toolbar
                     android:id="@+id/toolbar"
                     android:title="Foodname"
                     android:layout_width="match_parent"
