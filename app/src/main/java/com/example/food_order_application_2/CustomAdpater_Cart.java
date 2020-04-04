@@ -11,6 +11,13 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.food_order_application_2.Model.Cart;
+import com.example.food_order_application_2.Model.food;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -33,9 +40,25 @@ public class CustomAdpater_Cart extends RecyclerView.Adapter<CustomAdpater_Cart.
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.tv_quan.setText(data.get(position).getQuantity() + "");
+    public void onBindViewHolder(@NonNull final MyViewHolder holder, int position) {
+        DatabaseReference foods = FirebaseDatabase.getInstance().getReference("food_menu");
+        holder.tv_quan.setText("Quantity: " + data.get(position).getQuantity() + "");
+        foods.child(data.get(position).getProductId()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                food Food = dataSnapshot.getValue(food.class);
+                holder.tv_name.setText(Food.getName());
+                holder.tv_price.setText("Price: " + Food.getPrice() +"$");
 
+                String link = Food.getImg();
+                Picasso.get().load(link).resizeDimen(R.dimen.image_size, R.dimen.image_size).into(holder.imageView);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     @Override
