@@ -45,9 +45,9 @@ public class activity_menu extends Fragment {
     private Button btn_cart;
     private Cart order;
     ArrayList<Cart> save_order = new ArrayList<>();
-    Integer total = 0;
+
     Boolean button_appear = false;
-    int sum = 0;
+
 
     @Nullable
     @Override
@@ -70,8 +70,8 @@ public class activity_menu extends Fragment {
             public void onClick(View v) {
                 Intent intent2 = new Intent(getActivity(), activity_cart_detail.class);
                 intent2.putExtra("result",save_order);
-                intent2.putExtra("price", sum);
-                startActivity(intent2);
+                //intent2.putExtra("price", sum);
+                startActivityForResult(intent2, 2);
             }
         });
 
@@ -88,12 +88,26 @@ public class activity_menu extends Fragment {
             btn_cart.setVisibility(View.VISIBLE);
             button_appear = true;
 
+            // quantity
+            if (data.getParcelableExtra("result") != null) {
+                order = data.getParcelableExtra("result");
+                //total += order.getQuantity();
+                save_order.add(new Cart(order.getProductId(), order.getQuantity(), order.getPrice()));
+            }
 
-            order = data.getParcelableExtra("result");
-            total += order.getQuantity();
-            sum += data.getIntExtra("price", 1);
-            save_order.add(new Cart(order.getProductId(), order.getQuantity()));
+            //return data from activity_cart_detail
+            if (data.getParcelableArrayListExtra("value_update") != null) {
+                save_order = data.getParcelableArrayListExtra("value_update");
+            }
 
+            int sum = 0;
+            //save_order.add(new Cart(order.getProductId(), order.getQuantity(), order.getPrice()));
+            Integer total = 0;
+            for (int i = 0; i <= save_order.size() - 1; i++) {
+
+                sum += save_order.get(i).getPrice() * save_order.get(i).getQuantity();
+                total += save_order.get(i).getQuantity();
+            }
             btn_cart.setText("Total item: "+ total + " - Total price: " + sum + "$");
         }
     }

@@ -6,10 +6,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.example.food_order_application_2.Model.Cart;
 import com.example.food_order_application_2.Model.food;
 import com.google.firebase.database.DataSnapshot;
@@ -21,14 +23,16 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class CustomAdpater_Cart extends RecyclerView.Adapter<CustomAdpater_Cart.MyViewHolder> {
+public class CustomAdpater_Cart extends RecyclerView.Adapter<CustomAdpater_Cart.MyViewHolder>{
 
     ArrayList<Cart> data;
     Context context;
+    onItemClick itemclick;
 
-    public CustomAdpater_Cart(ArrayList<Cart> data, Context context) {
+    public CustomAdpater_Cart(ArrayList<Cart> data, Context context, onItemClick listener) {
         this.data = data;
         this.context = context;
+        this.itemclick = listener;
     }
 
     @NonNull
@@ -40,9 +44,22 @@ public class CustomAdpater_Cart extends RecyclerView.Adapter<CustomAdpater_Cart.
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
         DatabaseReference foods = FirebaseDatabase.getInstance().getReference("food_menu");
-        holder.tv_quan.setText("Quantity: " + data.get(position).getQuantity());
+        holder.elegantNumberButton.setNumber(String.valueOf(data.get(position).getQuantity()));
+        holder.elegantNumberButton.setOnClickListener(new ElegantNumberButton.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                data.get(position).setQuantity(Integer.parseInt(holder.elegantNumberButton.getNumber()));
+                notifyDataSetChanged();
+                //Toast.makeText(context, data.get(position).getQuantity() +"", Toast.LENGTH_SHORT).show();
+                if (data.get(position).getQuantity() == 0) {
+                    data.remove(position);
+                }
+                itemclick.onClick(data);
+            }
+        });
+
         foods.child(data.get(position).getProductId()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -61,23 +78,29 @@ public class CustomAdpater_Cart extends RecyclerView.Adapter<CustomAdpater_Cart.
         });
     }
 
+//    public void updateData() {
+//        itemclick.onClick(data);
+//    }
+
     @Override
     public int getItemCount() {
         return data.size();
     }
 
+
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tv_name, tv_price, tv_quan;
+        TextView tv_name, tv_price, tv_total;
         ImageView imageView;
+        ElegantNumberButton elegantNumberButton;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
             tv_name = itemView.findViewById(R.id.textView_product_name);
             tv_price = itemView.findViewById(R.id.textView_price);
-            tv_quan = itemView.findViewById(R.id.textView_quan);
             imageView = itemView.findViewById(R.id.imageView);
+            elegantNumberButton = itemView.findViewById(R.id.number_button_cart);
         }
     }
 }

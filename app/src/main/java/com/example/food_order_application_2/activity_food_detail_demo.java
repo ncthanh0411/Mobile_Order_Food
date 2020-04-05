@@ -31,7 +31,7 @@ public class activity_food_detail_demo extends AppCompatActivity {
     DatabaseReference foods;
     String foodID = "";
     Integer quantity;
-    int total = 0;
+    int price = 0;
 
     //FirebaseDatabase database;
     //DatabaseReference foods;
@@ -77,7 +77,6 @@ public class activity_food_detail_demo extends AppCompatActivity {
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 finish();
             }
         });
@@ -85,10 +84,10 @@ public class activity_food_detail_demo extends AppCompatActivity {
         btn_cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Cart cart  = new Cart(foodID, quantity);
+                Cart cart  = new Cart(foodID, quantity, price);
                 Intent replyIntent = new Intent();
                 replyIntent.putExtra("result",cart);
-                replyIntent.putExtra("price",total * quantity);
+                //replyIntent.putExtra("price",total * quantity);
                 setResult(RESULT_OK,replyIntent);
                 finish();
             }
@@ -107,7 +106,7 @@ public class activity_food_detail_demo extends AppCompatActivity {
                 food_price.setText(food.getPrice() +"");
                 food_name.setText(food.getName());
                 food_description.setText(food.getDetail());
-                total = food.getPrice();
+                price = food.getPrice();
             }
 
             @Override

@@ -22,7 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class activity_cart_detail extends AppCompatActivity {
+public class activity_cart_detail extends AppCompatActivity implements onItemClick {
 
     Button btn_order;
     FloatingActionButton btn_back;
@@ -47,6 +47,9 @@ public class activity_cart_detail extends AppCompatActivity {
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent_back = new Intent();
+                intent_back.putExtra("value_update", data);
+                setResult(RESULT_OK,intent_back);
                 finish();
             }
         });
@@ -56,10 +59,11 @@ public class activity_cart_detail extends AppCompatActivity {
         //Receive data from activity_menu
         Intent intent = getIntent();
         data = intent.getParcelableArrayListExtra("result");
-        int sum = intent.getIntExtra("price", 1);
-
-        textView_total.setText("Total price: " + sum + "$ ");
-
+        //int sum = intent.getIntExtra("price", 1);
+//        int sum = 0;
+//        for (int i = 0; i <= data.size() - 1; i++) {
+//            sum += data.get(i).getPrice() * data.get(i).getQuantity();
+//        }
 
         mData = FirebaseDatabase.getInstance().getReference("User");
 
@@ -81,9 +85,27 @@ public class activity_cart_detail extends AppCompatActivity {
                 activity_cart_detail.this,
                 LinearLayoutManager.VERTICAL,
                 false));
-        adapter_cart = new CustomAdpater_Cart(data, activity_cart_detail.this);
+        adapter_cart = new CustomAdpater_Cart(data, activity_cart_detail.this, this);
         recyclerView.setAdapter(adapter_cart);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(activity_cart_detail.this, LinearLayoutManager.VERTICAL);
         recyclerView.addItemDecoration(dividerItemDecoration);
+
+        //onClick(data);
+        int sum = 0;
+        for (int i = 0; i <= data.size() - 1; i++) {
+            sum += data.get(i).getPrice() * data.get(i).getQuantity();
+        }
+        textView_total.setText("Total price: " + sum + "$ ");
+    }
+
+    @Override
+    public void onClick(ArrayList<Cart> data) {
+
+        int sum = 0;
+        for (int i = 0; i <= data.size() - 1; i++) {
+            sum += data.get(i).getPrice() * data.get(i).getQuantity();
+        }
+        textView_total.setText("Total price: " + sum + "$ ");
+        adapter_cart.notifyDataSetChanged();
     }
 }

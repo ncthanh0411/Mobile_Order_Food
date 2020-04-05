@@ -2,25 +2,25 @@ package com.example.food_order_application_2.Model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.widget.Toast;
-
-import java.io.Serializable;
 
 public class Cart implements Parcelable {
     String ProductId;
     int Quantity;
+    int Price;
 
     public Cart() {
     }
 
-    public Cart(String productId, int quantity) {
+    public Cart(String productId, int quantity, int price) {
         ProductId = productId;
         Quantity = quantity;
+        Price = price;
     }
 
     protected Cart(Parcel in) {
         ProductId = in.readString();
         Quantity = in.readInt();
+        Price = in.readInt();
     }
 
     public static final Creator<Cart> CREATOR = new Creator<Cart>() {
@@ -51,6 +51,14 @@ public class Cart implements Parcelable {
         Quantity = quantity;
     }
 
+    public int getPrice() {
+        return Price;
+    }
+
+    public void setPrice(int price) {
+        Price = price;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -60,5 +68,6 @@ public class Cart implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(ProductId);
         dest.writeInt(Quantity);
+        dest.writeInt(Price);
     }
 }
