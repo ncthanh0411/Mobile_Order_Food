@@ -1,4 +1,4 @@
-package com.example.food_order_application_2;
+package com.example.food_order_application_2.Menu;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,13 +8,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.food_order_application_2.Adapter.CustomAdpater_Cart;
 import com.example.food_order_application_2.Model.Cart;
+import com.example.food_order_application_2.R;
+import com.example.food_order_application_2.onItemClick;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -66,11 +71,6 @@ public class activity_cart_detail extends AppCompatActivity implements onItemCli
         //Receive data from activity_menu
         Intent intent = getIntent();
         data = intent.getParcelableArrayListExtra("result");
-        //int sum = intent.getIntExtra("price", 1);
-//        int sum = 0;
-//        for (int i = 0; i <= data.size() - 1; i++) {
-//            sum += data.get(i).getPrice() * data.get(i).getQuantity();
-//        }
 
         mData = FirebaseDatabase.getInstance().getReference("User");
 
@@ -98,39 +98,61 @@ public class activity_cart_detail extends AppCompatActivity implements onItemCli
         recyclerView.addItemDecoration(dividerItemDecoration);
 
         //onClick(data);
-
         for (int i = 0; i <= data.size() - 1; i++) {
             sum += data.get(i).getPrice() * data.get(i).getQuantity();
         }
         textView_total.setText("Total price: " + sum + "$ ");
 
+        //set button state through address
+        ed_address.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String address = ed_address.getText().toString().trim();
+
+                btn_order.setEnabled(!address.isEmpty());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        //set button state through list of items
+        if (data.isEmpty()) {
+            Toast.makeText(activity_cart_detail.this, "Please add at least 1 item.", Toast.LENGTH_SHORT).show();
+            btn_order.setEnabled(false);
+        }
 
         // send data to firebase
-
         mData2 = FirebaseDatabase.getInstance().getReference().child("Order");
 
-//        if (ed_address.getText().toString().isEmpty()) {
-//
-//            btn_order.setEnabled(false);
-//        }
+        mData2.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    count_ID = (int) dataSnapshot.getChildrenCount();
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
 
         btn_order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String address = ed_address.getText().toString().trim();
                 int total_price = sum;
-
-                mData2.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        count_ID = (int) dataSnapshot.getChildrenCount();
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
 
                 //Add order to firebase
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -143,7 +165,12 @@ public class activity_cart_detail extends AppCompatActivity implements onItemCli
                     Cart order = data.get(i);
                     mData2.child(String.valueOf(count_ID +1)).child(order.getProductId()).setValue(order);
                 }
+
                 Toast.makeText(activity_cart_detail.this, "Order has been sent", Toast.LENGTH_SHORT).show();
+                data.clear();
+                Intent replyIntent = new Intent();
+                replyIntent.putExtra("cart", data);
+                setResult(RESULT_OK,replyIntent);
                 finish();
             }
         });
@@ -151,7 +178,6 @@ public class activity_cart_detail extends AppCompatActivity implements onItemCli
 
     @Override
     public void onClick(ArrayList<Cart> data) {
-
         sum = 0;
         for (int i = 0; i <= data.size() - 1; i++) {
             sum += data.get(i).getPrice() * data.get(i).getQuantity();

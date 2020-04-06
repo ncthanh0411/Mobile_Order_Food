@@ -1,7 +1,6 @@
-package com.example.food_order_application_2;
+package com.example.food_order_application_2.Adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.food_order_application_2.Model.food;
+import com.example.food_order_application_2.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

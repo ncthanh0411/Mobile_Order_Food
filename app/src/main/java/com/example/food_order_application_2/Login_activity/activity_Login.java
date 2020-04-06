@@ -1,4 +1,4 @@
-package com.example.food_order_application_2;
+package com.example.food_order_application_2.Login_activity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -11,6 +11,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.food_order_application_2.R;
+import com.example.food_order_application_2.activity_bottomNav;
 import com.firebase.client.Firebase;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;

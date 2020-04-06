@@ -3,19 +3,15 @@ package com.example.food_order_application_2;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.example.food_order_application_2.Model.User;
+import com.example.food_order_application_2.Menu.activity_menu;
 import com.example.food_order_application_2.ui.User.UserFragment;
-import com.example.food_order_application_2.ui.dashboard.DashboardFragment;
 import com.example.food_order_application_2.ui.home.HomeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
 public class activity_bottomNav extends AppCompatActivity {
 

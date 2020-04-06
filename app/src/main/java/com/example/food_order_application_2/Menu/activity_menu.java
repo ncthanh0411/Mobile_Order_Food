@@ -1,4 +1,4 @@
-package com.example.food_order_application_2;
+package com.example.food_order_application_2.Menu;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,28 +10,26 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.food_order_application_2.Adapter.CustomAdapter;
+import com.example.food_order_application_2.Menu.activity_cart_detail;
+import com.example.food_order_application_2.Menu.activity_food_detail_demo;
 import com.example.food_order_application_2.Model.Cart;
 import com.example.food_order_application_2.Model.food;
+import com.example.food_order_application_2.R;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -91,8 +89,18 @@ public class activity_menu extends Fragment {
             // quantity
             if (data.getParcelableExtra("result") != null) {
                 order = data.getParcelableExtra("result");
-                //total += order.getQuantity();
-                save_order.add(new Cart(order.getProductId(), order.getQuantity(), order.getPrice()));
+
+                //check duplicate items
+                Boolean check = false;
+                for (int i = 0; i <= save_order.size() - 1; i ++){
+                    if (save_order.get(i).getProductId().equals(order.getProductId())) {
+                        save_order.get(i).setQuantity(save_order.get(i).getQuantity() + order.getQuantity());
+                        check = true;
+                    }
+                }
+                if (check == false) {
+                    save_order.add(new Cart(order.getProductId(), order.getQuantity(), order.getPrice()));
+                }
             }
 
             //return data from activity_cart_detail
@@ -100,8 +108,12 @@ public class activity_menu extends Fragment {
                 save_order = data.getParcelableArrayListExtra("value_update");
             }
 
+            if (data.getParcelableArrayListExtra("cart") != null) {
+                save_order = data.getParcelableArrayListExtra("cart");
+                btn_cart.setVisibility(View.INVISIBLE);
+            }
+
             int sum = 0;
-            //save_order.add(new Cart(order.getProductId(), order.getQuantity(), order.getPrice()));
             Integer total = 0;
             for (int i = 0; i <= save_order.size() - 1; i++) {
 
@@ -118,14 +130,10 @@ public class activity_menu extends Fragment {
         data = new ArrayList<>();
         mData = FirebaseDatabase.getInstance().getReference("food_menu");
 
-        //pushdata to firebase
-        //mData.push().setValue(new food("Fried Chicken","this is fried chicken assasdasd",200,"anh"));
-
         mData.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 //Add Id to key
-
                 String keys = dataSnapshot.getKey();
                 Log.d("qweasd",dataSnapshot.getKey());
                 key.add(keys);
