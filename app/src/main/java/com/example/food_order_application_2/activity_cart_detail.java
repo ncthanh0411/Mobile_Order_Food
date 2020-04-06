@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.food_order_application_2.Model.Cart;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -38,7 +39,7 @@ public class activity_cart_detail extends AppCompatActivity implements onItemCli
 
     DatabaseReference mData, mData2;
     int count_ID;
-
+    int sum = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,7 +98,7 @@ public class activity_cart_detail extends AppCompatActivity implements onItemCli
         recyclerView.addItemDecoration(dividerItemDecoration);
 
         //onClick(data);
-        int sum = 0;
+
         for (int i = 0; i <= data.size() - 1; i++) {
             sum += data.get(i).getPrice() * data.get(i).getQuantity();
         }
@@ -107,15 +108,17 @@ public class activity_cart_detail extends AppCompatActivity implements onItemCli
         // send data to firebase
 
         mData2 = FirebaseDatabase.getInstance().getReference().child("Order");
+
 //        if (ed_address.getText().toString().isEmpty()) {
 //
 //            btn_order.setEnabled(false);
 //        }
+
         btn_order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String address = ed_address.getText().toString().trim();
-                int total_price = Integer.parseInt(textView_total.getText().toString().trim());
+                int total_price = sum;
 
                 mData2.addValueEventListener(new ValueEventListener() {
                     @Override
@@ -131,7 +134,7 @@ public class activity_cart_detail extends AppCompatActivity implements onItemCli
 
                 //Add order to firebase
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                mData2.child(String.valueOf(count_ID +1)).child("User ID").setValue(user);
+                mData2.child(String.valueOf(count_ID +1)).child("User ID").setValue(user.getUid());
                 mData2.child(String.valueOf(count_ID +1)).child("Address").setValue(address);
                 mData2.child(String.valueOf(count_ID +1)).child("Total price").setValue(total_price);
 
@@ -140,6 +143,8 @@ public class activity_cart_detail extends AppCompatActivity implements onItemCli
                     Cart order = data.get(i);
                     mData2.child(String.valueOf(count_ID +1)).child(order.getProductId()).setValue(order);
                 }
+                Toast.makeText(activity_cart_detail.this, "Order has been sent", Toast.LENGTH_SHORT).show();
+                finish();
             }
         });
     }
@@ -147,7 +152,7 @@ public class activity_cart_detail extends AppCompatActivity implements onItemCli
     @Override
     public void onClick(ArrayList<Cart> data) {
 
-        int sum = 0;
+        sum = 0;
         for (int i = 0; i <= data.size() - 1; i++) {
             sum += data.get(i).getPrice() * data.get(i).getQuantity();
         }

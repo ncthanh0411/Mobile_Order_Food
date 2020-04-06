@@ -50,6 +50,7 @@ public class activity_Login extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(activity_Login.this, activity_Login_signup.class);
                 startActivity(intent);
+
             }
         });
         /*
@@ -103,6 +104,7 @@ public class activity_Login extends AppCompatActivity {
                 else {
                     signIn(email, pass);
                 }
+
             }
         });
     }
@@ -120,6 +122,7 @@ public class activity_Login extends AppCompatActivity {
                         FirebaseUser user = mAuthentication.getCurrentUser();
                         Intent intent_foodmenu = new Intent(activity_Login.this, activity_bottomNav.class);
                         startActivity(intent_foodmenu);
+                        finish();
                     } else {
                         // If sign in fails, display a message to the user.
                         Toast.makeText(activity_Login.this, "Fail to login", Toast.LENGTH_LONG).show();
