@@ -78,10 +78,6 @@ public class CustomAdpater_Cart extends RecyclerView.Adapter<CustomAdpater_Cart.
         });
     }
 
-//    public void updateData() {
-//        itemclick.onClick(data);
-//    }
-
     @Override
     public int getItemCount() {
         return data.size();
