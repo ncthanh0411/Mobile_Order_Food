@@ -31,7 +31,7 @@ public class activity_Login_signup extends AppCompatActivity {
     FirebaseAuth mAuthentication;
     ProgressDialog progressDialog;
 
-    User user;
+    User account;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,16 +47,12 @@ public class activity_Login_signup extends AppCompatActivity {
         progressDialog = new ProgressDialog(activity_Login_signup.this);
         progressDialog.setMessage("Registering user...");
 
-        final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        final DatabaseReference table_user = database.getReference("User");
-
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String email = mail.getText().toString();
                 String pass = password.getText().toString();
-                user = new User(name.getText().toString(), password.getText().toString(),mail.getText().toString(),phone.getText().toString());
-                table_user.child(phone.getText().toString()).setValue(user);
+                account = new User(name.getText().toString(), password.getText().toString(),mail.getText().toString(),phone.getText().toString());
 
                 //check if mail or password
                 if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
@@ -80,11 +76,15 @@ public class activity_Login_signup extends AppCompatActivity {
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+                        progressDialog.dismiss();
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            progressDialog.dismiss();
-                            Toast.makeText(activity_Login_signup.this,"Successfull",Toast.LENGTH_LONG).show();
                             FirebaseUser user = mAuthentication.getCurrentUser();
+                            DatabaseReference table_user = FirebaseDatabase.getInstance().getReference("User") ;
+                            table_user.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(account);
+                            // Sign up success, update UI with the signed-in user's information
+
+                            Toast.makeText(activity_Login_signup.this,"Successful",Toast.LENGTH_LONG).show();
+                            finish();
                         } else {
                             // If sign in fails, display a message to the user.
                             Toast.makeText(activity_Login_signup.this, "Fail to register", Toast.LENGTH_LONG).show();

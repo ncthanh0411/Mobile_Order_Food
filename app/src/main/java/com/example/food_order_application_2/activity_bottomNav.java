@@ -3,9 +3,10 @@ package com.example.food_order_application_2;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.food_order_application_2.Model.User;
+import com.example.food_order_application_2.ui.User.UserFragment;
 import com.example.food_order_application_2.ui.dashboard.DashboardFragment;
 import com.example.food_order_application_2.ui.home.HomeFragment;
-import com.example.food_order_application_2.ui.notifications.NotificationsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.annotation.NonNull;
@@ -44,7 +45,7 @@ public class activity_bottomNav extends AppCompatActivity {
                             selectedFragment = new activity_menu();
                             break;
                         case R.id.navigation_account:
-                            selectedFragment = new NotificationsFragment();
+                            selectedFragment = new UserFragment();
                             break;
                     }
                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,

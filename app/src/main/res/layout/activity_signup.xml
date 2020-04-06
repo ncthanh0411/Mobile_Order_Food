@@ -120,11 +120,12 @@
 
         <Button
             android:id="@+id/btnSignUp"
-            android:layout_marginTop="400px"
+
             android:layout_width="600px"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_below="@id/linearLayout2"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/custom_button"
             android:text="Register"
             android:textColor="@android:color/white" />
