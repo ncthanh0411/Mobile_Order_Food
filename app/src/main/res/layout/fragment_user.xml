@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
     android:background="@color/colorWhite"
+    android:orientation="vertical"
     tools:context=".ui.User.UserFragment">
-
 
     <RelativeLayout
         android:id="@+id/layoutAbove"
@@ -133,16 +133,13 @@
     <ScrollView
         android:id="@+id/scrollViewlayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/layoutAbove"
-        android:fillViewport="true"
-        android:clipToPadding="false">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="0dp"
             android:orientation="vertical">
 
             <LinearLayout
@@ -211,19 +208,16 @@
                     android:textStyle="bold" />
             </LinearLayout>
 
-
         </LinearLayout>
     </ScrollView>
-
     <Button
         android:id="@+id/btnLogout"
         android:layout_width="500px"
         android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/button_logout"
         android:text="Logout"
-        android:textColor="@android:color/white"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="10dp"
-      />
-</RelativeLayout>
+        android:textColor="@android:color/white" />
+
+</LinearLayout>

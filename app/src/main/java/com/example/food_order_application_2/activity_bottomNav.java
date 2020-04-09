@@ -27,8 +27,12 @@ public class activity_bottomNav extends AppCompatActivity {
                 R.id.navigation_home, R.id.navigation_menu, R.id.navigation_account)
                 .build();
 
+        if (savedInstanceState == null) {
+            navView.setSelectedItemId(R.id.navigation_home);
+        }
+
     }
-    private  BottomNavigationView.OnNavigationItemSelectedListener navListener =
+    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
