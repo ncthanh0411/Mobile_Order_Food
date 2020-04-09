@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
@@ -17,36 +19,25 @@ import com.example.food_order_application_2.R;
 
 public class HomeFragment extends Fragment {
 
-    ViewFlipper v_flipper;
+    ViewFlipper viewFlipper;
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_home, container, false);
-        int images[] = {R.drawable.beef, R.drawable.noodles, R.drawable.chicken};
 
-        v_flipper = view.findViewById(R.id.v_flipper);
 
-        //loop
-        /*for (i = 0; i<image.length; i++)
-        {
-            flipperImages(images[1]);
-        }*/
+        viewFlipper = (ViewFlipper)view.findViewById(R.id.flipper);
+        viewFlipper.setFlipInterval(5000); //5 sec
+        viewFlipper.setAutoStart(true);
+        flipperImages();
 
-        //Foreach
-        for (int image: images) {
-            flipperImages(image);
-        }
         return view;
     }
-    public void flipperImages(int image) {
-        ImageView imageView = new ImageView(getContext());
-        imageView.setBackgroundResource(image);
-
-        v_flipper.addView(imageView);
-        v_flipper.setFlipInterval(4000); //4sec
-        v_flipper.setAutoStart(true);
-
-        //animation
-        v_flipper.setInAnimation(getContext(), android.R.anim.slide_in_left);
-        v_flipper.setInAnimation(getContext(), android.R.anim.slide_out_right);
+    public void flipperImages() {
+        //viewFlipper.setInAnimation(getContext(),android.R.anim.slide_in_left);
+        //viewFlipper.setOutAnimation(getContext(),android.R.anim.slide_out_right);
+        Animation animation_slide_in = AnimationUtils.loadAnimation(getContext(),R.anim.slide_in_right);
+        Animation animation_slide_out = AnimationUtils.loadAnimation(getContext(),R.anim.slide_out_right);
+        viewFlipper.setInAnimation(animation_slide_in);
+        viewFlipper.setOutAnimation(animation_slide_out);
     }
 }
