@@ -103,7 +103,7 @@
                     android:id="@+id/image_view2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:src="@drawable/curry"
+                    android:src="@drawable/chicken"
                     android:scaleType="centerCrop"/>
 
                 <Button
@@ -191,7 +191,7 @@
                     android:id="@+id/image_view4"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:src="@drawable/chicken"
+                    android:src="@drawable/beef"
                     android:scaleType="centerCrop"/>
 
                 <Button
