@@ -26,38 +26,42 @@ import java.util.ArrayList;
 public class custom_adapter_cart_history extends RecyclerView.Adapter<custom_adapter_cart_history.myViewHolder> {
 
     private Context context;
-    ArrayList<Cart> data;
+    private ArrayList<Cart> data;
+    private ArrayList<String> id;
 
-    public custom_adapter_cart_history(Context context, ArrayList<Cart> data) {
+    public custom_adapter_cart_history(Context context, ArrayList<Cart> data, ArrayList<String> id) {
         this.context = context;
         this.data = data;
+        this.id = id;
     }
 
     @NonNull
     @Override
     public myViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
-        View view = layoutInflater.inflate(R.layout.activity_cart_history, parent, false);
+        View view = layoutInflater.inflate(R.layout.list_cart_history, parent, false);
         return new myViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull final myViewHolder holder, int position) {
-        holder.quantity.setText(data.get(position).getQuantity());
-        final DatabaseReference foods = FirebaseDatabase.getInstance().getReference("food_menu");
-        foods.child(data.get(position).getProductId()).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                food Food = dataSnapshot.getValue(food.class);
-                holder.name.setText(Food.getName());
-                holder.price.setText(Food.getPrice());
-            }
+        //holder.quantity.setText(data.get(position).getQuantity());
+        holder.tv_id.setText("id.get(position)");
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
+//        DatabaseReference foods = FirebaseDatabase.getInstance().getReference("food_menu");
+//        foods.child(data.get(position).getProductId()).addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                food Food = dataSnapshot.getValue(food.class);
+//                holder.name.setText(Food.getName());
+//                holder.price.setText(Food.getPrice());
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
     }
 
     @Override
@@ -66,13 +70,15 @@ public class custom_adapter_cart_history extends RecyclerView.Adapter<custom_ada
     }
 
     public class myViewHolder extends RecyclerView.ViewHolder {
-        TextView quantity, name, total, price;
+        TextView quantity, name, total, price, tv_id;
+
         public myViewHolder(@NonNull View itemView) {
             super(itemView);
             quantity = itemView.findViewById(R.id.text_view_quantity);
             name = itemView.findViewById(R.id.text_view_name);
             total = itemView.findViewById(R.id.text_view_total);
             price = itemView.findViewById(R.id.text_view_price);
+            tv_id = itemView.findViewById(R.id.tv_order_id);
         }
     }
 }

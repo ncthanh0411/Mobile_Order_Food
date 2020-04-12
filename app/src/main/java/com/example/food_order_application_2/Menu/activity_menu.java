@@ -23,6 +23,8 @@ import com.example.food_order_application_2.Menu.activity_food_detail_demo;
 import com.example.food_order_application_2.Model.Cart;
 import com.example.food_order_application_2.Model.food;
 import com.example.food_order_application_2.R;
+import com.example.food_order_application_2.activity_cart_history;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -41,6 +43,7 @@ public class activity_menu extends Fragment {
     private DatabaseReference mData;
     private ArrayList<String> key;
     private Button btn_cart;
+    private FloatingActionButton btn_history;
     private Cart order;
     ArrayList<Cart> save_order = new ArrayList<>();
 
@@ -58,6 +61,9 @@ public class activity_menu extends Fragment {
         //btn cart
         btn_cart = view.findViewById(R.id.btn_cart);
 
+        //btn history
+        btn_history = view.findViewById(R.id.btn_history);
+
         //Set button cart visible, button_appear is used to check if btn_cart appear or not
         if(button_appear == false) {
             btn_cart.setVisibility(View.GONE);
@@ -67,9 +73,19 @@ public class activity_menu extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent2 = new Intent(getActivity(), activity_cart_detail.class);
-                intent2.putExtra("result",save_order);
+                intent2.putExtra("result", save_order);
                 //intent2.putExtra("price", sum);
                 startActivityForResult(intent2, 2);
+            }
+        });
+
+        //cart history intent
+        btn_history.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent_history = new Intent(getActivity(), activity_cart_history.class);
+                //intent_history.putExtra("save order", save_order);
+                startActivity(intent_history);
             }
         });
 

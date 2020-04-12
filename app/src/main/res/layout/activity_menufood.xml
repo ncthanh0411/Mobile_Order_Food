@@ -23,6 +23,15 @@
             app:title="Food Menu"
             app:expandedTitleGravity="center">
 
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btn_history"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_history_white_24dp"
+                app:backgroundTint="@color/transparent"
+                android:layout_gravity="right"
+                app:pressedTranslationZ="0dp"/>
+
             <ImageView
                 android:id="@+id/img_food"
                 android:layout_width="match_parent"
@@ -30,7 +39,8 @@
                 android:contentDescription="@null"
                 android:scaleType="centerCrop"
                 app:layout_collapseMode="parallax"
-                app:srcCompat="@drawable/login" />
+                app:srcCompat="@drawable/login"/>
+
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -38,7 +48,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                app:layout_collapseMode="parallax" />
+                app:layout_collapseMode="parallax"/>
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 

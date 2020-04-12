@@ -53,7 +53,7 @@ public class CustomAdpater_Cart extends RecyclerView.Adapter<CustomAdpater_Cart.
             public void onClick(View view) {
                 data.get(position).setQuantity(Integer.parseInt(holder.elegantNumberButton.getNumber()));
                 notifyDataSetChanged();
-                //Toast.makeText(context, data.get(position).getQuantity() +"", Toast.LENGTH_SHORT).show();
+
                 if (data.get(position).getQuantity() == 0) {
                     data.remove(position);
                 }
