@@ -46,7 +46,7 @@ public class custom_adapter_cart_history extends RecyclerView.Adapter<custom_ada
     @Override
     public void onBindViewHolder(@NonNull final myViewHolder holder, int position) {
         //holder.quantity.setText(data.get(position).getQuantity());
-        holder.tv_id.setText("id.get(position)");
+        holder.tv_id.setText("Order: " +id.get(position));
 
 //        DatabaseReference foods = FirebaseDatabase.getInstance().getReference("food_menu");
 //        foods.child(data.get(position).getProductId()).addValueEventListener(new ValueEventListener() {
@@ -66,7 +66,7 @@ public class custom_adapter_cart_history extends RecyclerView.Adapter<custom_ada
 
     @Override
     public int getItemCount() {
-        return data.size();
+        return id.size();
     }
 
     public class myViewHolder extends RecyclerView.ViewHolder {

@@ -50,11 +50,12 @@ public class activity_cart_history extends AppCompatActivity {
                 String keys = dataSnapshot.getKey();
                 id.add(keys);
                 Log.d("id", dataSnapshot.getKey());
+                adapter.notifyDataSetChanged();
             }
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
+                adapter.notifyDataSetChanged();
             }
 
             @Override

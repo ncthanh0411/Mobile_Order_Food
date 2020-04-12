@@ -70,7 +70,7 @@
                 android:id="@+id/signup_mailEt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_action_username"
+                android:drawableLeft="@drawable/ic_action_mail"
                 android:hint="Enter your mail"
                 android:textColor="@android:color/white"
                 android:inputType="textEmailAddress"/>
@@ -89,7 +89,7 @@
                 android:id="@+id/signup_nameEt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_action_mail"
+                android:drawableLeft="@drawable/ic_action_name"
                 android:hint="Enter your name"
                 android:textColor="@android:color/white"
                 android:inputType="text"/>
