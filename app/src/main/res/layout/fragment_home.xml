@@ -35,7 +35,6 @@
                 android:text="HOME"
                 android:textColor="@color/colorWhite"
                 android:textSize="34sp"
-                android:textStyle="bold"
                 android:gravity="center"/>
 
             <androidx.cardview.widget.CardView

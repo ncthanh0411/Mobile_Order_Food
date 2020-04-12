@@ -11,14 +11,20 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.ui.AppBarConfiguration;
 
 public class activity_bottomNav extends AppCompatActivity {
+
+    private HomeFragment homeFragment;
+    private activity_menu activity_Menu;
+    private UserFragment userFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bottom_nav);
+
         BottomNavigationView navView = findViewById(R.id.nav_view);
         navView.setOnNavigationItemSelectedListener(navListener);
         // Passing each menu ID as a set of Ids because each
@@ -27,31 +33,35 @@ public class activity_bottomNav extends AppCompatActivity {
                 R.id.navigation_home, R.id.navigation_menu, R.id.navigation_account)
                 .build();
 
-        if (savedInstanceState == null) {
-            navView.setSelectedItemId(R.id.navigation_home);
-        }
+        homeFragment = new HomeFragment();
+        activity_Menu = new activity_menu();
+        userFragment = new UserFragment();
 
+        setFragment(homeFragment);
     }
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                    Fragment selectedFragment = null;
+
                     switch (item.getItemId()){
                         case R.id.navigation_home:
-                            selectedFragment = new HomeFragment();
-                            break;
+                            setFragment(homeFragment);
+                            return true;
                         case R.id.navigation_menu:
-                            selectedFragment = new activity_menu();
-                            break;
+                            setFragment(activity_Menu);
+                            return true;
                         case R.id.navigation_account:
-                            selectedFragment = new UserFragment();
-                            break;
+                            setFragment(userFragment);
+                            return true;
+                        default:
+                            return false;
                     }
-                   getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                           selectedFragment).commit();
-                    return true;
                 }
             };
-
+    private void setFragment(Fragment fragment) {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, fragment);
+        fragmentTransaction.commit();
+    }
 }

@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import com.example.food_order_application_2.Adapter.CustomAdapter;
 import com.example.food_order_application_2.Adapter.custom_adapter_cart_history;
 import com.example.food_order_application_2.Model.Cart;
+import com.example.food_order_application_2.Model.Order;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -28,7 +29,7 @@ public class activity_cart_history extends AppCompatActivity {
 
     RecyclerView recyclerView;
     custom_adapter_cart_history adapter;
-    ArrayList<Cart> data;
+    ArrayList<Order> data;
     DatabaseReference databaseReference;
     FloatingActionButton btn_back;
     ArrayList<String> id = new ArrayList<>();
@@ -50,6 +51,10 @@ public class activity_cart_history extends AppCompatActivity {
                 String keys = dataSnapshot.getKey();
                 id.add(keys);
                 Log.d("id", dataSnapshot.getKey());
+                String address = dataSnapshot.child("Address").getValue().toString();
+                String total_price = dataSnapshot.child("Total price").getValue().toString();
+                String user_id = dataSnapshot.child("User ID").getValue().toString();
+                data.add(new Order("1", address, total_price, user_id));
                 adapter.notifyDataSetChanged();
             }
 

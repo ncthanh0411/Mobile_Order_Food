@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.food_order_application_2.Model.Cart;
+import com.example.food_order_application_2.Model.Order;
 import com.example.food_order_application_2.Model.food;
 import com.example.food_order_application_2.R;
 import com.firebase.client.Firebase;
@@ -26,10 +27,10 @@ import java.util.ArrayList;
 public class custom_adapter_cart_history extends RecyclerView.Adapter<custom_adapter_cart_history.myViewHolder> {
 
     private Context context;
-    private ArrayList<Cart> data;
+    private ArrayList<Order> data;
     private ArrayList<String> id;
 
-    public custom_adapter_cart_history(Context context, ArrayList<Cart> data, ArrayList<String> id) {
+    public custom_adapter_cart_history(Context context, ArrayList<Order> data, ArrayList<String> id) {
         this.context = context;
         this.data = data;
         this.id = id;
@@ -47,6 +48,8 @@ public class custom_adapter_cart_history extends RecyclerView.Adapter<custom_ada
     public void onBindViewHolder(@NonNull final myViewHolder holder, int position) {
         //holder.quantity.setText(data.get(position).getQuantity());
         holder.tv_id.setText("Order: " +id.get(position));
+        holder.tv_address.setText("Address: " + data.get(position).getAddress());
+        holder.total.setText("Total: " + data.get(position).getTotal_price());
 
 //        DatabaseReference foods = FirebaseDatabase.getInstance().getReference("food_menu");
 //        foods.child(data.get(position).getProductId()).addValueEventListener(new ValueEventListener() {
@@ -70,7 +73,7 @@ public class custom_adapter_cart_history extends RecyclerView.Adapter<custom_ada
     }
 
     public class myViewHolder extends RecyclerView.ViewHolder {
-        TextView quantity, name, total, price, tv_id;
+        TextView quantity, name, total, price, tv_id, tv_address;
 
         public myViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -79,6 +82,7 @@ public class custom_adapter_cart_history extends RecyclerView.Adapter<custom_ada
             total = itemView.findViewById(R.id.text_view_total);
             price = itemView.findViewById(R.id.text_view_price);
             tv_id = itemView.findViewById(R.id.tv_order_id);
+            tv_address = itemView.findViewById(R.id.tv_address);
         }
     }
 }
