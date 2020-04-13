@@ -46,7 +46,7 @@ public class activity_menu extends Fragment {
     private FloatingActionButton btn_history;
     private Cart order;
     ArrayList<Cart> save_order = new ArrayList<>();
-
+    ArrayList<String> save_UserId = new ArrayList<>();
     Boolean button_appear = false;
 
 
@@ -84,7 +84,7 @@ public class activity_menu extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent_history = new Intent(getActivity(), activity_cart_history.class);
-                //intent_history.putExtra("save order", save_order);
+                intent_history.putExtra("saveUserID", save_UserId);
                 startActivity(intent_history);
             }
         });
@@ -152,6 +152,7 @@ public class activity_menu extends Fragment {
                 //Add Id to key
                 String keys = dataSnapshot.getKey();
                 Log.d("qweasd",dataSnapshot.getKey());
+                save_UserId.add(dataSnapshot.getKey());
                 key.add(keys);
                 //retrieve value from firebase
                 food food_menu = dataSnapshot.getValue(food.class);

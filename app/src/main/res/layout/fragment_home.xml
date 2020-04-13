@@ -1,211 +1,223 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
-    <androidx.core.widget.NestedScrollView
+    <RelativeLayout
+        android:id="@+id/headerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:ignore="MissingConstraints">
+        android:layout_height="match_parent">
 
-        <RelativeLayout
-            android:id="@+id/headerView"
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:background="@color/colorPrimary" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
+            android:gravity="center"
+            android:text="HOME"
+            android:textColor="@color/colorWhite"
+            android:textSize="34sp" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/parent_layout1"
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:layout_below="@+id/title"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="0dp"
+
+            >
+
+            <ViewFlipper
+                android:id="@+id/flipper"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/title"
+                android:background="@color/colorPrimary">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/btn"
+                    tools:ignore="ContentDescription" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/egg"
+                    tools:ignore="ContentDescription" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/hacao"
+                    tools:ignore="ContentDescription" />
+            </ViewFlipper>
+        </androidx.cardview.widget.CardView>
+
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            tools:ignore="ExtraText,MissingConstraints">
+            android:layout_below="@id/view">
 
-            <View
-                android:id="@+id/view"
-                android:layout_width="match_parent"
-                android:layout_height="220dp"
-                android:background="@color/colorPrimary" />
-
-            <TextView
-                android:id="@+id/title"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginRight="16dp"
-                android:text="HOME"
-                android:textColor="@color/colorWhite"
-                android:textSize="34sp"
-                android:gravity="center"/>
+                android:orientation="vertical">
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/parent_layout1"
-                android:layout_width="match_parent"
-                android:layout_height="140dp"
-                android:layout_below="@+id/title"
-                app:cardCornerRadius="15dp"
-                app:cardElevation="0dp"
-                android:layout_margin="8dp"
 
-                >
-
-                <ViewFlipper
+                <TextView
+                    android:id="@+id/text_view1"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/flipper"
-                    android:layout_below="@+id/title"
-                    android:background="@color/colorPrimary">
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16sp"
+                    android:layout_marginTop="11dp"
+                    android:layout_marginRight="16sp"
+                    android:text="@string/banner_1"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="19sp"
+                    android:textStyle="bold" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/parent_layout2"
+                    android:layout_width="match_parent"
+                    android:layout_height="140dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    app:cardCornerRadius="15dp"
+                    app:cardElevation="0dp">
+
                     <ImageView
-                        tools:ignore="ContentDescription"
+                        android:id="@+id/image_view2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:src="@drawable/btn"
-                        android:scaleType="centerCrop"/>
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/chicken"
+                        tools:ignore="ContentDescription" />
+
+                    <Button
+                        android:id="@+id/btnOrder2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginTop="100dp"
+                        android:background="@drawable/customs_button"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="Order Now!"
+                        android:textColor="@color/textColors"
+                        android:textStyle="bold" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/text_view2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16sp"
+                    android:layout_marginTop="11dp"
+                    android:layout_marginRight="16sp"
+                    android:text="@string/banner_2"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="19sp"
+                    android:textStyle="bold" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/parent_layout3"
+                    android:layout_width="match_parent"
+                    android:layout_height="140dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    app:cardCornerRadius="15dp"
+                    app:cardElevation="0dp">
+
                     <ImageView
-                        tools:ignore="ContentDescription"
+                        android:id="@+id/image_view3"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:src="@drawable/egg"
-                        android:scaleType="centerCrop"/>
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/soup"
+                        tools:ignore="ContentDescription" />
+
+                    <Button
+                        android:id="@+id/btnOrder3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginTop="100dp"
+                        android:background="@drawable/customs_button"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="Order Now!"
+                        android:textColor="@color/textColors"
+                        android:textStyle="bold" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/text_view3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16sp"
+                    android:layout_marginTop="11dp"
+                    android:layout_marginRight="16sp"
+                    android:text="@string/banner_3"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="19sp"
+                    android:textStyle="bold" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/parent_layout4"
+                    android:layout_width="match_parent"
+                    android:layout_height="140dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    app:cardCornerRadius="15dp"
+                    app:cardElevation="0dp">
+
                     <ImageView
-                        tools:ignore="ContentDescription"
+                        android:id="@+id/image_view4"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:src="@drawable/hacao"
-                        android:scaleType="centerCrop"/>
-                </ViewFlipper>
-            </androidx.cardview.widget.CardView>
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/beef"
+                        tools:ignore="ContentDescription" />
 
-            <TextView
-                android:id="@+id/text_view1"
-                android:text="@string/banner_1"
-                android:textSize="19sp"
-                android:textColor="@color/colorAccent"
-                android:textStyle="bold"
-                android:layout_marginLeft="16sp"
-                android:layout_marginRight="16sp"
-                android:layout_marginTop="11dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/view"/>
+                    <Button
+                        android:id="@+id/btnOrder4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginTop="100dp"
+                        android:background="@drawable/customs_button"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="Order Now!"
+                        android:textColor="@color/textColors"
+                        android:textStyle="bold" />
+                </androidx.cardview.widget.CardView>
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/parent_layout2"
-                android:layout_width="match_parent"
-                android:layout_height="140dp"
-                android:layout_below="@+id/text_view1"
-                app:cardCornerRadius="15dp"
-                app:cardElevation="0dp"
-                android:layout_margin="8dp">
+            </LinearLayout>
+        </ScrollView>
 
-                <ImageView
-                    tools:ignore="ContentDescription"
-                    android:id="@+id/image_view2"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/chicken"
-                    android:scaleType="centerCrop"/>
-
-                <Button
-                    android:id="@+id/btnOrder2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:textStyle="bold"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginTop="100dp"
-                    android:background="@drawable/customs_button"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:text="Order Now!"
-                    android:textColor="@color/textColors" />
-            </androidx.cardview.widget.CardView>
-
-            <TextView
-                android:id="@+id/text_view2"
-                android:text="@string/banner_2"
-                android:textSize="19sp"
-                android:textColor="@color/colorAccent"
-                android:textStyle="bold"
-                android:layout_marginLeft="16sp"
-                android:layout_marginRight="16sp"
-                android:layout_marginTop="11dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/parent_layout2"/>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/parent_layout3"
-                android:layout_width="match_parent"
-                android:layout_height="140dp"
-                android:layout_below="@+id/text_view2"
-                app:cardCornerRadius="15dp"
-                app:cardElevation="0dp"
-                android:layout_margin="8dp">
-
-                <ImageView
-                    tools:ignore="ContentDescription"
-                    android:id="@+id/image_view3"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/soup"
-                    android:scaleType="centerCrop"/>
-
-                <Button
-                    android:id="@+id/btnOrder3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:textStyle="bold"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginTop="100dp"
-                    android:background="@drawable/customs_button"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:text="Order Now!"
-                    android:textColor="@color/textColors" />
-            </androidx.cardview.widget.CardView>
-
-            <TextView
-                android:id="@+id/text_view3"
-                android:text="@string/banner_3"
-                android:textSize="19sp"
-                android:textColor="@color/colorAccent"
-                android:textStyle="bold"
-                android:layout_marginLeft="16sp"
-                android:layout_marginRight="16sp"
-                android:layout_marginTop="11dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/parent_layout3"/>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/parent_layout4"
-                android:layout_width="match_parent"
-                android:layout_height="140dp"
-                android:layout_below="@+id/text_view3"
-                app:cardCornerRadius="15dp"
-                app:cardElevation="0dp"
-                android:layout_margin="8dp">
-
-                <ImageView
-                    tools:ignore="ContentDescription"
-                    android:id="@+id/image_view4"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/beef"
-                    android:scaleType="centerCrop"/>
-
-                <Button
-                    android:id="@+id/btnOrder4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:textStyle="bold"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginTop="100dp"
-                    android:background="@drawable/customs_button"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:text="Order Now!"
-                    android:textColor="@color/textColors" />
-            </androidx.cardview.widget.CardView>
-        </RelativeLayout>
-    </androidx.core.widget.NestedScrollView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
+</RelativeLayout>
