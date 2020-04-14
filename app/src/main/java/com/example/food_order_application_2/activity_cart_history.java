@@ -40,8 +40,8 @@ public class activity_cart_history extends AppCompatActivity {
     FloatingActionButton btn_back;
 
     ArrayList<Order> data;
-    ArrayList<FoodHistory> data_cartFood = new ArrayList<>();
-    ArrayList<String> id = new ArrayList<>();
+    ArrayList<FoodHistory> data_cartFood;
+    ArrayList<String> id ;
     ArrayList<String> save_UserId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +52,16 @@ public class activity_cart_history extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recycler_view_history);
         btn_back = findViewById(R.id.btnBack);
-
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         data = new ArrayList<>();
+        id = new ArrayList<>();
+        data_cartFood = new ArrayList<>();
+
 
         databaseReference = FirebaseDatabase.getInstance().getReference("Order");
         databaseReference.addChildEventListener(new ChildEventListener() {
@@ -74,8 +82,7 @@ public class activity_cart_history extends AppCompatActivity {
                         FoodHistory foodList;
                         foodList = new FoodHistory(keys, productID, Integer.parseInt(quantity), Integer.parseInt(price));
                         data_cartFood.add(foodList);
-                        Log.d("abcd", foodList.getId() +
-                                "id: " +foodList.getProductId() + "quantity: "+ foodList.getQuantity());
+
                     }
                 }
 
@@ -85,10 +92,14 @@ public class activity_cart_history extends AppCompatActivity {
 //                          "Quantity: "+ data_cartFood.get(temp).getQuantity() + "Price: " +
 //                        data_cartFood.get(temp).getPrice());
 
-                String address = dataSnapshot.child("Address").getValue().toString();
-                String total_price = dataSnapshot.child("Total price").getValue().toString();
-                String user_id = dataSnapshot.child("User ID").getValue().toString();
-                data.add(new Order("1", address, total_price, user_id));
+                Log.d("thanhToan", dataSnapshot.getValue().toString());
+
+                if(dataSnapshot.child("Address").getValue() != null) {
+                    String address = dataSnapshot.child("Address").getValue().toString();
+                    String total_price = dataSnapshot.child("Total price").getValue().toString();
+                    String user_id = dataSnapshot.child("User ID").getValue().toString();
+                    data.add(new Order("1", address, total_price, user_id));
+                }
 
 
                 adapter.notifyDataSetChanged();
@@ -116,12 +127,7 @@ public class activity_cart_history extends AppCompatActivity {
         });
 
 
-        btn_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+
 
 
         recyclerView.setLayoutManager(new LinearLayoutManager(activity_cart_history.this, LinearLayoutManager.VERTICAL,false));

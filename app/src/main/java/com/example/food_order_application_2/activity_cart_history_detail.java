@@ -59,7 +59,7 @@ public class activity_cart_history_detail extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         data = new ArrayList<>();
         data = getIntent().getParcelableArrayListExtra("cart_food_detail");
-        Toast.makeText(activity_cart_history_detail.this, data.size() +"",Toast.LENGTH_SHORT).show();
+
         mData = FirebaseDatabase.getInstance().getReference("food_menu");
 
         mData.addValueEventListener(new ValueEventListener() {
@@ -67,9 +67,10 @@ public class activity_cart_history_detail extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 for(int i =0; i< data.size(); i++) {
-                    Log.d("asdaasd", dataSnapshot.child(data.get(i).getProductId()).toString());
+
                     String name = dataSnapshot.child(data.get(i).getProductId()).child("name").getValue().toString();
                     data.get(i).setProductId(name);
+                    adapter.notifyDataSetChanged();
                 }
             }
 

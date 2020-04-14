@@ -46,7 +46,7 @@ public class activity_menu extends Fragment {
     private FloatingActionButton btn_history;
     private Cart order;
     ArrayList<Cart> save_order = new ArrayList<>();
-    ArrayList<String> save_UserId = new ArrayList<>();
+    ArrayList<String> save_UserId;
     Boolean button_appear = false;
 
 
@@ -56,6 +56,7 @@ public class activity_menu extends Fragment {
 
         View  view  = inflater.inflate(R.layout.activity_menufood, container, false);
         key = new ArrayList<>();
+        save_UserId = new ArrayList<>();
         recyclerView = view.findViewById(R.id.recyclerView);
         initView();
         //btn cart
