@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.food_order_application_2.Adapter.CustomAdapter;
@@ -18,6 +19,7 @@ import com.example.food_order_application_2.Menu.activity_food_detail_demo;
 import com.example.food_order_application_2.Menu.activity_menu;
 import com.example.food_order_application_2.Model.FoodHistory;
 import com.example.food_order_application_2.Model.food;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -32,15 +34,18 @@ public class activity_cart_history_detail extends AppCompatActivity {
     custom_adapter_cart_history_detail adapter;
     ArrayList<FoodHistory> data;
     DatabaseReference mData;
-    Button btnBack;
+    FloatingActionButton btnBack;
+    TextView textView_order;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart_history_detail);
+
         recyclerView = findViewById(R.id.recycler_view_history_detail);
+        textView_order = findViewById(R.id.tv_order_name);
         initView();
-        btnBack = findViewById(R.id.btnBackHistory);
+        btnBack = findViewById(R.id.btnBack);
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

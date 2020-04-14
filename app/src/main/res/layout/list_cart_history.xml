@@ -28,7 +28,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="TextView"
-                android:textSize="18sp"
+                android:textColor="#00B2BF"
+                android:textSize="22sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -60,7 +61,8 @@
                     android:gravity="right"
                     android:text="Total"
                     android:textSize="18sp"
-                    android:textStyle="italic" />
+                    android:textStyle="italic"
+                    android:textColor="#FF0000"/>
 
             </LinearLayout>
 

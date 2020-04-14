@@ -5,13 +5,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_marginLeft="10dp"
-    android:layout_marginTop="10dp"
+    android:layout_marginTop="15dp"
     android:layout_marginRight="10dp">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+        app:cardCornerRadius="5dp"
         app:cardElevation="5dp">
 
         <LinearLayout
@@ -25,7 +25,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Name Of Product"
-                android:textSize="18sp"
+                android:textColor="#00B2BF"
+                android:textSize="22sp"
                 android:textStyle="bold" />
 
 
@@ -50,8 +51,9 @@
                     android:layout_weight="1"
                     android:gravity="right"
                     android:text="Price"
+                    android:textColor="#FF0000"
                     android:textSize="18sp"
-                    android:textStyle="italic" />
+                    android:textStyle="bold|italic" />
 
             </LinearLayout>
 
