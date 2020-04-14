@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_arrow_back_black_24dp"
-        app:backgroundTint="@color/transparent"
+        app:backgroundTint="#00B2BF"
         app:elevation="6dp"
         app:layout_anchor="@id/app_bar_layout"
         app:layout_anchorGravity="top|left|start"

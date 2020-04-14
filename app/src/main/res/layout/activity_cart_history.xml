@@ -23,13 +23,14 @@
             app:layout_anchor="@id/app_bar_layout"
             app:layout_anchorGravity="top|left|start"
             app:pressedTranslationZ="4dp"
-            app:useCompatPadding="true"/>
+            app:useCompatPadding="true" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Cart History"
             android:textSize="24dp"
+            android:layout_marginLeft="10dp"
             android:layout_gravity="center_vertical"
             android:textColor="#FFFFFF"
             android:textStyle="bold"/>
@@ -39,7 +40,7 @@
         android:id="@+id/recycler_view_history"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#919191">
+        android:background="#D8D8D8">
 
     </androidx.recyclerview.widget.RecyclerView>
 </LinearLayout>

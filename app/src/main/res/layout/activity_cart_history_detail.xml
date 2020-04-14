@@ -22,7 +22,6 @@
             app:backgroundTint="@color/transparent"
             app:elevation="6dp"
             app:layout_anchor="@id/app_bar_layout"
-            app:layout_anchorGravity="top|left|start"
             app:pressedTranslationZ="4dp"
             app:useCompatPadding="true"/>
 
@@ -33,6 +32,7 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:text="Order"
+            android:layout_marginLeft="10dp"
             android:textColor="#FFFFFF"
             android:textSize="24sp" />
     </LinearLayout>
@@ -41,5 +41,5 @@
         android:id="@+id/recycler_view_history_detail"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#919191" />
+        android:background="#D8D8D8" />
 </LinearLayout>
