@@ -73,6 +73,7 @@ public class activity_cart_history extends AppCompatActivity {
         data_cartFood = new ArrayList<>();
 
 
+
         databaseReference = FirebaseDatabase.getInstance().getReference("Order");
         databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
@@ -144,15 +145,25 @@ public class activity_cart_history extends AppCompatActivity {
                         // do whatever
                         Intent intent = new Intent(activity_cart_history.this, activity_cart_history_detail.class);
                         ArrayList<FoodHistory>data_cartFood_detail = new ArrayList<>();
+                        int order_count = 0;
+                        int order_temp = 0;
+                        Boolean flag = false;
                         for(int i = 0; i< data_cartFood.size(); i++)
                         {
-                                if(data_cartFood.get(i).getId().equals(id.get(position))){
-                                    data_cartFood_detail.add(data_cartFood.get(i));
-
+                            if(!flag) {
+                                if (order_temp != Integer.parseInt(data_cartFood.get(i).getId())) {
+                                    order_count += 1;
+                                    order_temp = Integer.parseInt(data_cartFood.get(i).getId());
+                                }
+                            }
+                            if(data_cartFood.get(i).getId().equals(id.get(position))){
+                                data_cartFood_detail.add(data_cartFood.get(i));
+                                flag = true;
                             }
                         }
 
                         intent.putExtra("cart_food_detail", data_cartFood_detail);
+                        intent.putExtra("order_count", order_count);
                         startActivity(intent);
                         //startActivityForResult(intent,1);
 

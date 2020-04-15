@@ -51,21 +51,21 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/btn"
+                    android:src="@drawable/chicken"
                     tools:ignore="ContentDescription" />
 
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/egg"
+                    android:src="@drawable/soup"
                     tools:ignore="ContentDescription" />
 
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/hacao"
+                    android:src="@drawable/beef"
                     tools:ignore="ContentDescription" />
             </ViewFlipper>
         </androidx.cardview.widget.CardView>

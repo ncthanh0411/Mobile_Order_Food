@@ -33,6 +33,7 @@ public class custom_adapter_cart_history extends RecyclerView.Adapter<custom_ada
     private ArrayList<Order> data;
     private ArrayList<String> id;
     private ArrayList<FoodHistory> data_cartFood;
+    int order = 0;
 
     public custom_adapter_cart_history(Context context, ArrayList<Order> data, ArrayList<String> id, ArrayList<FoodHistory> data_cartFood) {
         this.context = context;
@@ -52,7 +53,8 @@ public class custom_adapter_cart_history extends RecyclerView.Adapter<custom_ada
     @Override
     public void onBindViewHolder(@NonNull final myViewHolder holder, int position) {
         //holder.quantity.setText(data.get(position).getQuantity());
-        holder.tv_id.setText("Order: " +id.get(position));
+        order +=1;
+        holder.tv_id.setText("Order: " + order);
         holder.tv_address.setText("Address: " + data.get(position).getAddress());
         holder.total.setText("Total: " + data.get(position).getTotal_price());
 

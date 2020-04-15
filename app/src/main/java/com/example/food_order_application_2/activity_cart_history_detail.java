@@ -36,6 +36,7 @@ public class activity_cart_history_detail extends AppCompatActivity {
     DatabaseReference mData;
     FloatingActionButton btnBack;
     TextView textView_order;
+    int order_count;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,9 +60,9 @@ public class activity_cart_history_detail extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         data = new ArrayList<>();
         data = getIntent().getParcelableArrayListExtra("cart_food_detail");
-
+        order_count = getIntent().getIntExtra("order_count",123);
         mData = FirebaseDatabase.getInstance().getReference("food_menu");
-
+        textView_order.setText("Order " + order_count);
         mData.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
