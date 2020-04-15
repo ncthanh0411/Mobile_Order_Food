@@ -15,6 +15,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.example.food_order_application_2.Model.User;
 import com.example.food_order_application_2.activity_cart_history_detail;
 import com.example.food_order_application_2.Adapter.custom_adapter_cart_history;
 import com.example.food_order_application_2.Menu.activity_food_detail_demo;
@@ -23,11 +24,14 @@ import com.example.food_order_application_2.Model.Cart;
 import com.example.food_order_application_2.Model.FoodHistory;
 import com.example.food_order_application_2.Model.Order;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -35,6 +39,8 @@ public class activity_cart_history extends AppCompatActivity {
 
     RecyclerView recyclerView;
     custom_adapter_cart_history adapter;
+
+    String user_ID;
 
     DatabaseReference databaseReference;
     FloatingActionButton btn_back;
@@ -49,6 +55,10 @@ public class activity_cart_history extends AppCompatActivity {
         setContentView(R.layout.activity_cart_history);
 
         save_UserId = getIntent().getStringArrayListExtra("saveUserID");
+
+        //Get Current UserID
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        user_ID = user.getUid();
 
         recyclerView = findViewById(R.id.recycler_view_history);
         btn_back = findViewById(R.id.btnBack);
@@ -67,40 +77,35 @@ public class activity_cart_history extends AppCompatActivity {
         databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                String keys = dataSnapshot.getKey();
-                id.add(keys);
-                //food_id.add(dataSnapshot.getValue(String.class));
 
-                for(int i=0; i< save_UserId.size();i++ ){
-                    if( dataSnapshot.hasChild(save_UserId.get(i)))
-                    {
 
-                        String productID = dataSnapshot.child(save_UserId.get(i)).child("productId").getValue().toString();
-                        String quantity = dataSnapshot.child(save_UserId.get(i)).child("quantity").getValue().toString();
-                        String price = dataSnapshot.child(save_UserId.get(i)).child("price").getValue().toString();
+                //Compare if user is exists
+                if(user_ID.equals(dataSnapshot.child("User ID").getValue().toString())) {
+                    String keys = dataSnapshot.getKey();
+                    id.add(keys);
+                    for (int i = 0; i < save_UserId.size(); i++) {
+                        if (dataSnapshot.hasChild(save_UserId.get(i))) {
 
-                        FoodHistory foodList;
-                        foodList = new FoodHistory(keys, productID, Integer.parseInt(quantity), Integer.parseInt(price));
-                        data_cartFood.add(foodList);
+                            String productID = dataSnapshot.child(save_UserId.get(i)).child("productId").getValue().toString();
+                            String quantity = dataSnapshot.child(save_UserId.get(i)).child("quantity").getValue().toString();
+                            String price = dataSnapshot.child(save_UserId.get(i)).child("price").getValue().toString();
 
+                            FoodHistory foodList;
+                            foodList = new FoodHistory(keys, productID, Integer.parseInt(quantity), Integer.parseInt(price));
+                            data_cartFood.add(foodList);
+
+                        }
+                    }
+
+                    Log.d("thanhToan", dataSnapshot.getValue().toString());
+
+                    if (dataSnapshot.child("Address").getValue() != null) {
+                        String address = dataSnapshot.child("Address").getValue().toString();
+                        String total_price = dataSnapshot.child("Total price").getValue().toString();
+                        String user_id = dataSnapshot.child("User ID").getValue().toString();
+                        data.add(new Order("1", address, total_price, user_id));
                     }
                 }
-
-
-
-//                Log.d("abcd", keys + data_cartFood.get(temp).getProductId() +
-//                          "Quantity: "+ data_cartFood.get(temp).getQuantity() + "Price: " +
-//                        data_cartFood.get(temp).getPrice());
-
-                Log.d("thanhToan", dataSnapshot.getValue().toString());
-
-                if(dataSnapshot.child("Address").getValue() != null) {
-                    String address = dataSnapshot.child("Address").getValue().toString();
-                    String total_price = dataSnapshot.child("Total price").getValue().toString();
-                    String user_id = dataSnapshot.child("User ID").getValue().toString();
-                    data.add(new Order("1", address, total_price, user_id));
-                }
-
 
                 adapter.notifyDataSetChanged();
             }
@@ -160,6 +165,10 @@ public class activity_cart_history extends AppCompatActivity {
         );
 
     }
+
+
+
+
     //REcyclerview onclick
     public static class RecyclerItemClickListener implements RecyclerView.OnItemTouchListener {
         private activity_menu.RecyclerItemClickListener.OnItemClickListener mListener;
