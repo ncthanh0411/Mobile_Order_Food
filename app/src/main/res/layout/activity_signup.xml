@@ -36,49 +36,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:orientation="vertical">
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/signup_phoneTIL"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="10dp"
-            android:background="#81636058"
-            android:textColorHint="@android:color/tertiary_text_light">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/signup_phoneEt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_action_username"
-                android:hint="Enter your phone number"
-                android:textColor="@android:color/white"
-                android:inputType="number"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/signup_mailTIL"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="10dp"
-            android:background="#81636058"
-            android:textColorHint="@android:color/tertiary_text_light">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/signup_mailEt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_action_mail"
-                android:hint="Enter your mail"
-                android:textColor="@android:color/white"
-                android:inputType="textEmailAddress"/>
-        </com.google.android.material.textfield.TextInputLayout>
+        android:orientation="vertical"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/signup_nameTIL"
-            android:layout_width="350dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="10dp"
@@ -95,10 +59,9 @@
                 android:inputType="text"/>
         </com.google.android.material.textfield.TextInputLayout>
 
-
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/signup_passwordTIL"
-            android:layout_width="350dp"
+            android:id="@+id/signup_mailTIL"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="10dp"
@@ -106,14 +69,54 @@
             android:textColorHint="@android:color/tertiary_text_light">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/signup_passwordEt"
+                android:id="@+id/signup_mailEt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_action_password"
-                android:hint="Enter your password"
+                android:drawableLeft="@drawable/ic_action_mail"
+                android:hint="Enter your mail"
                 android:textColor="@android:color/white"
-                android:inputType="textPassword"/>
+                android:inputType="textEmailAddress"/>
         </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <com.hbb20.CountryCodePicker
+                android:id="@+id/ccpRegister"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                app:ccp_autoDetectCountry="true"
+                app:ccp_textSize="16sp"
+                app:ccp_showNameCode="false"
+                app:ccp_contentColor="@color/colorWhite" />
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/phoneTIL"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+
+                android:layout_weight="3"
+                android:background="#81636058"
+                android:textColorHint="@android:color/tertiary_text_light">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/phoneEt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_action_username"
+                    android:hint="Enter your phone number"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@android:color/white" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+
     </LinearLayout>
 
 

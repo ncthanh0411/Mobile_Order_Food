@@ -18,7 +18,9 @@
         <activity android:name=".Menu.activity_food_detail_demo" />
         <activity android:name=".Menu.activity_menu" />
         <activity android:name=".Login_activity.activity_Login_signup" />
-        <activity android:name=".Login_activity.activity_Login">
+        <activity android:name=".Login_activity.activity_Login"/>
+        <activity android:name=".Login_activity.activity_VerifyPhone"/>
+        <activity android:name=".Login_activity.activity_Loginmenu">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

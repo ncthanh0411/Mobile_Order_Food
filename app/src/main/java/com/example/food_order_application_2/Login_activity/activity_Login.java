@@ -3,6 +3,7 @@ package com.example.food_order_application_2.Login_activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -23,13 +24,15 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.hbb20.CountryCodePicker;
 
 public class activity_Login extends AppCompatActivity {
-    Button btnLogin, btnRegister;
-    TextInputEditText mail, password;
+    Button btnReceiveSMS;
+    TextInputEditText phone;
     Firebase mRef;
     FirebaseAuth mAuthentication;
     ProgressDialog progressDialog;
+    CountryCodePicker ccp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,74 +40,37 @@ public class activity_Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         mAuthentication = FirebaseAuth.getInstance();
-        mail = findViewById(R.id.mailEt);
-        password = findViewById(R.id.passwordEt);
 
-        btnLogin = findViewById(R.id.btnSignIn);
-        btnRegister = findViewById(R.id.btnRegister);
+
+        btnReceiveSMS = findViewById(R.id.btnReceiveSMS);
+        phone = findViewById(R.id.phoneLoginEt);
+        ccp = findViewById(R.id.ccp_Login);
+
         progressDialog = new ProgressDialog(activity_Login.this);
         progressDialog.setMessage("Login user...");
 
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference table_user = database.getReference("User");
-        btnRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(activity_Login.this, activity_Login_signup.class);
-                startActivity(intent);
 
-            }
-        });
-        /*
-       btnLogin.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-
-               table_user.addValueEventListener(new ValueEventListener() {
-                   @Override
-                   public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                       if(dataSnapshot.child(mail.getText().toString()).exists()) {
-                           //User information
-                           User user = dataSnapshot.child(mail.getText().toString()).getValue(User.class);
-                           if (user.getPassword().equals(password.getText().toString())) {
-                               Toast.makeText(activity_Login.this, "Sucessfull", Toast.LENGTH_LONG).show();
-                           } else {
-                               Toast.makeText(activity_Login.this, "Fail", Toast.LENGTH_LONG).show();
-                           }
-                       }
-                       else {
-                           Toast.makeText(activity_Login.this, "User not exist", Toast.LENGTH_LONG).show();
-                       }
-                   }
-
-                   @Override
-                   public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                   }
-               });
-
-           }
-       });
-       */
-
-        btnLogin.setOnClickListener(new View.OnClickListener() {
+        btnReceiveSMS.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                String email = mail.getText().toString();
-                String pass = password.getText().toString();
-                if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-                    mail.setError("Invalid email");
-                    mail.setFocusable(true);
+                String number = phone.getText().toString();
+                if(number.isEmpty()){
+                    phone.setError("Your Phone number is empty");
+                    phone.requestFocus();
                 }
-
-                else if(pass.length() <6) {
-                    password.setError("Password length at least 6 characters");
-                    password.setFocusable(true);
+                else if(number.length() < 9){
+                    phone.setError("Invalid phone number");
+                    phone.requestFocus();
                 }
-                else {
-                    signIn(email, pass);
+                else{
+                    String phoneNumber = "+" + ccp.getFullNumber() + number;
+                    Log.d("cc2",phoneNumber);
+                    Intent intent = new Intent(activity_Login.this,activity_VerifyPhone.class);
+                    intent.putExtra("phoneNumber",phoneNumber);
+                    startActivity(intent);
                 }
 
             }

@@ -39,36 +39,36 @@ public class activity_Login_signup extends AppCompatActivity {
 
         mAuthentication = FirebaseAuth.getInstance();
         btnSignUp = findViewById(R.id.btnSignUp);
-        phone =  findViewById(R.id.signup_phoneEt);
+        //phone =  findViewById(R.id.signup_phoneEt);
         mail = findViewById(R.id.signup_mailEt);
         name = findViewById(R.id.signup_nameEt);
-        password = findViewById(R.id.signup_passwordEt);
+       // password = findViewById(R.id.signup_passwordEt);
         //progress show when register
         progressDialog = new ProgressDialog(activity_Login_signup.this);
         progressDialog.setMessage("Registering user...");
 
-        btnSignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String email = mail.getText().toString();
-                String pass = password.getText().toString();
-                account = new User(name.getText().toString(), password.getText().toString(),mail.getText().toString(),phone.getText().toString());
-
-                //check if mail or password
-                if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-                    mail.setError("Invalid email");
-                    mail.setFocusable(true);
-                }
-
-                else if(pass.length() <6) {
-                    password.setError("Passord length at least 6 characters");
-                    password.setFocusable(true);
-                }
-                else {
-                    Register(email, pass);
-                }
-            }
-        });
+//        btnSignUp.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                String email = mail.getText().toString();
+//                String pass = password.getText().toString();
+//                account = new User(name.getText().toString(), password.getText().toString(),mail.getText().toString(),phone.getText().toString());
+//
+//                //check if mail or password
+//                if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+//                    mail.setError("Invalid email");
+//                    mail.setFocusable(true);
+//                }
+//
+//                else if(pass.length() <6) {
+//                    password.setError("Passord length at least 6 characters");
+//                    password.setFocusable(true);
+//                }
+//                else {
+//                    Register(email, pass);
+//                }
+//            }
+//        });
     }
     public void Register( String email, String pass){
         progressDialog.show();

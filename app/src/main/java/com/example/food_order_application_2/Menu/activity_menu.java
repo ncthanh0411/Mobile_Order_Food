@@ -67,7 +67,7 @@ public class activity_menu extends Fragment {
 
         //Set button cart visible, button_appear is used to check if btn_cart appear or not
         if(button_appear == false) {
-            btn_cart.setVisibility(View.GONE);
+            btn_cart.setVisibility(View.INVISIBLE);
         }
 
         btn_cart.setOnClickListener(new View.OnClickListener() {
