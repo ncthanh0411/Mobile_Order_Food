@@ -6,7 +6,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/login"
     tools:context=".Login_activity.activity_VerifyPhone">
-
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_arrow_back_black_24dp"
+        app:backgroundTint="@color/transparent"
+        app:elevation="6dp"
+        app:layout_anchorGravity="top|left|start"
+        app:pressedTranslationZ="12dp"
+        app:useCompatPadding="true" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

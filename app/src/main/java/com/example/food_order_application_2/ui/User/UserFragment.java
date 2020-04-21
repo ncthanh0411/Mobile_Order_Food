@@ -14,7 +14,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.food_order_application_2.Model.User;
 import com.example.food_order_application_2.R;
-import com.example.food_order_application_2.Login_activity.activity_Login;
+import com.example.food_order_application_2.Login_activity.activity_Loginmenu;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -41,9 +41,9 @@ public class UserFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 mAuthentication.signOut();
-                Intent intent = new Intent(getActivity(), activity_Login.class);
+                Intent intent = new Intent(getActivity(), activity_Loginmenu.class);
                 startActivity(intent);
-                getActivity().getFragmentManager().popBackStack();
+                getActivity().finish();
             }
         });
         return view;
