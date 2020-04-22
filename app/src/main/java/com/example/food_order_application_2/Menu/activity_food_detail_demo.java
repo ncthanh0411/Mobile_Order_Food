@@ -34,9 +34,6 @@ public class activity_food_detail_demo extends AppCompatActivity {
     Integer quantity;
     int price = 0;
 
-    //FirebaseDatabase database;
-    //DatabaseReference foods;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,7 +85,6 @@ public class activity_food_detail_demo extends AppCompatActivity {
                 Cart cart  = new Cart(foodID, quantity, price);
                 Intent replyIntent = new Intent();
                 replyIntent.putExtra("result",cart);
-                //replyIntent.putExtra("price",total * quantity);
                 setResult(RESULT_OK,replyIntent);
                 finish();
             }

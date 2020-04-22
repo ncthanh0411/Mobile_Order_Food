@@ -17,17 +17,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
             android:padding="5dp">
-
-            <TextView
-                android:id="@+id/tv_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Name Of Product"
-                android:textColor="#00B2BF"
-                android:textSize="22sp"
-                android:textStyle="bold" />
 
             <ImageView
                 android:id="@+id/imgView"
@@ -35,12 +25,21 @@
                 android:layout_height="100dp"
                 app:srcCompat="@color/colorPrimary" />
 
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:orientation="vertical"
+                android:layout_marginLeft="5dp">
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Name Of Product"
+                    android:textColor="#00B2BF"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tv_quantity"
