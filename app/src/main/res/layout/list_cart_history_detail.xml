@@ -28,10 +28,12 @@
                 android:textColor="#00B2BF"
                 android:textSize="22sp"
                 android:textStyle="bold" />
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#C0C0C0" />
+
+            <ImageView
+                android:id="@+id/imgView"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                app:srcCompat="@color/colorPrimary" />
 
 
             <LinearLayout

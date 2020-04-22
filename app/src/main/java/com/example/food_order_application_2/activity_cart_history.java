@@ -97,10 +97,8 @@ public class activity_cart_history extends AppCompatActivity {
                             String quantity = dataSnapshot.child(save_UserId.get(i)).child("quantity").getValue().toString();
                             String price = dataSnapshot.child(save_UserId.get(i)).child("price").getValue().toString();
 
-
-
                             FoodHistory foodList;
-                            foodList = new FoodHistory(keys, productID, Integer.parseInt(quantity), Integer.parseInt(price));
+                            foodList = new FoodHistory(keys, productID, Integer.parseInt(quantity), Integer.parseInt(price),"");
                             data_cartFood.add(foodList);
                         }
                     }

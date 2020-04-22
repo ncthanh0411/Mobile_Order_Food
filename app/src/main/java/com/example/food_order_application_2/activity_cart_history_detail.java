@@ -70,7 +70,9 @@ public class activity_cart_history_detail extends AppCompatActivity {
                 for(int i =0; i< data.size(); i++) {
 
                     String name = dataSnapshot.child(data.get(i).getProductId()).child("name").getValue().toString();
+                    String img = dataSnapshot.child(data.get(i).getProductId()).child("img").getValue().toString();
                     data.get(i).setProductId(name);
+                    data.get(i).setImg(img);
                     adapter.notifyDataSetChanged();
                 }
             }

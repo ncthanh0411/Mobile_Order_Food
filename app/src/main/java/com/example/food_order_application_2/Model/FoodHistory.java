@@ -5,19 +5,21 @@ import android.os.Parcelable;
 import android.provider.ContactsContract;
 
 public class FoodHistory implements Parcelable {
-    String id;
-    String ProductId;
-    int Quantity;
-    int Price;
+    private String id;
+    private String ProductId;
+    private int Quantity;
+    private int Price;
+    private String Img;
 
     public FoodHistory() {
     }
 
-    public FoodHistory(String id, String productId, int quantity, int price) {
+    public FoodHistory(String id, String productId, int quantity, int price, String img) {
         this.id = id;
         ProductId = productId;
         Quantity = quantity;
         Price = price;
+        Img = img;
     }
 
     protected FoodHistory(Parcel in) {
@@ -25,6 +27,7 @@ public class FoodHistory implements Parcelable {
         ProductId = in.readString();
         Quantity = in.readInt();
         Price = in.readInt();
+        Img = in.readString();
     }
 
     public static final Creator<FoodHistory> CREATOR = new Creator<FoodHistory>() {
@@ -71,6 +74,14 @@ public class FoodHistory implements Parcelable {
         Price = price;
     }
 
+    public String getImg() {
+        return Img;
+    }
+
+    public void setImg(String img) {
+        Img = img;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -82,5 +93,6 @@ public class FoodHistory implements Parcelable {
         dest.writeString(ProductId);
         dest.writeInt(Quantity);
         dest.writeInt(Price);
+        dest.writeString(Img);
     }
 }
