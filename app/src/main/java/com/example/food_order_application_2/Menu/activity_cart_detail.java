@@ -29,7 +29,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class activity_cart_detail extends AppCompatActivity implements onItemClick {
 
@@ -45,6 +49,9 @@ public class activity_cart_detail extends AppCompatActivity implements onItemCli
     DatabaseReference mData, mData2;
     int count_ID;
     int sum = 0;
+    //date format
+    final DateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy, hh:mm");
+    final Date today = Calendar.getInstance().getTime();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -153,12 +160,14 @@ public class activity_cart_detail extends AppCompatActivity implements onItemCli
             public void onClick(View v) {
                 String address = ed_address.getText().toString().trim();
                 int total_price = sum;
+                String date = dateFormatter.format(today);
 
                 //Add order to firebase
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 mData2.child(String.valueOf(count_ID +1)).child("User ID").setValue(user.getUid());
                 mData2.child(String.valueOf(count_ID +1)).child("Address").setValue(address);
                 mData2.child(String.valueOf(count_ID +1)).child("Total price").setValue(total_price);
+                mData2.child(String.valueOf(count_ID +1)).child("Date").setValue(date);
 
 
                 for (int i = 0; i <= data.size() -1 ; i++) {

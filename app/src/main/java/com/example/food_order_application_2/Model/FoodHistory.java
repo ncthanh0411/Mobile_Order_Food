@@ -2,6 +2,7 @@ package com.example.food_order_application_2.Model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.provider.ContactsContract;
 
 public class FoodHistory implements Parcelable {
     String id;

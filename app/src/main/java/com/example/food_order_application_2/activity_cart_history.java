@@ -33,7 +33,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class activity_cart_history extends AppCompatActivity {
 
@@ -49,6 +53,8 @@ public class activity_cart_history extends AppCompatActivity {
     ArrayList<FoodHistory> data_cartFood;
     ArrayList<String> id ;
     ArrayList<String> save_UserId;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,10 +97,11 @@ public class activity_cart_history extends AppCompatActivity {
                             String quantity = dataSnapshot.child(save_UserId.get(i)).child("quantity").getValue().toString();
                             String price = dataSnapshot.child(save_UserId.get(i)).child("price").getValue().toString();
 
+
+
                             FoodHistory foodList;
                             foodList = new FoodHistory(keys, productID, Integer.parseInt(quantity), Integer.parseInt(price));
                             data_cartFood.add(foodList);
-
                         }
                     }
 
@@ -104,7 +111,9 @@ public class activity_cart_history extends AppCompatActivity {
                         String address = dataSnapshot.child("Address").getValue().toString();
                         String total_price = dataSnapshot.child("Total price").getValue().toString();
                         String user_id = dataSnapshot.child("User ID").getValue().toString();
-                        data.add(new Order("1", address, total_price, user_id));
+                        String date2 = dataSnapshot.child("Date").getValue().toString();
+
+                        data.add(new Order("1", address, total_price, user_id, date2));
                     }
                 }
 
@@ -203,7 +212,7 @@ public class activity_cart_history extends AppCompatActivity {
                 @Override
                 public void onLongPress(MotionEvent e) {
                     View child = recyclerView.findChildViewUnder(e.getX(), e.getY());
-                    if (child != null && mListener != null) {
+                        if (child != null && mListener != null) {
                         mListener.onLongItemClick(child, recyclerView.getChildAdapterPosition(child));
                     }
                 }

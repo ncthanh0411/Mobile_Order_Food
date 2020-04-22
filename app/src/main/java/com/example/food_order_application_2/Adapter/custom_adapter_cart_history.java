@@ -25,7 +25,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.lang.reflect.Constructor;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class custom_adapter_cart_history extends RecyclerView.Adapter<custom_adapter_cart_history.myViewHolder> {
 
@@ -56,18 +59,21 @@ public class custom_adapter_cart_history extends RecyclerView.Adapter<custom_ada
         order +=1;
         holder.tv_id.setText("Order: " + order);
         holder.tv_address.setText("Address: " + data.get(position).getAddress());
-        holder.total.setText("Total: " + data.get(position).getTotal_price());
+        holder.total.setText(data.get(position).getTotal_price() + "$");
+        holder.tv_date.setText(data.get(position).getDate());
 
         int quantity = 0;
-
-
         for(int i = 0; i< data_cartFood.size(); i++)
         {
             if(data_cartFood.get(i).getId().equals(id.get(position))){
                 quantity += data_cartFood.get(i).getQuantity();
             }
         }
-        holder.quantity.setText("Quantity: " + quantity );
+        if (quantity == 1) {
+            holder.quantity.setText(quantity +" item");
+        } else {
+            holder.quantity.setText(quantity +" items");
+        }
     }
 
     @Override
@@ -76,10 +82,11 @@ public class custom_adapter_cart_history extends RecyclerView.Adapter<custom_ada
     }
 
     public class myViewHolder extends RecyclerView.ViewHolder {
-        TextView quantity, total, tv_id, tv_address;
+        TextView quantity, total, tv_id, tv_address, tv_date;
         LinearLayout linearLayout;
         public myViewHolder(@NonNull View itemView) {
             super(itemView);
+            tv_date = itemView.findViewById(R.id.tv_date);
             quantity = itemView.findViewById(R.id.text_view_quantity);
             total = itemView.findViewById(R.id.text_view_total);
             tv_id = itemView.findViewById(R.id.tv_order_id);

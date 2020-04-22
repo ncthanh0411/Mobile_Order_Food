@@ -5,16 +5,17 @@ public class Order {
     String address;
     String total_price;
     String user_id;
-
+    String Date;
 
     public Order() {
     }
 
-    public Order(String food_id, String address, String total_price, String user_id) {
+    public Order(String food_id, String address, String total_price, String user_id, String date) {
         this.food_id = food_id;
         this.address = address;
         this.total_price = total_price;
         this.user_id = user_id;
+        this.Date = date;
     }
 
     public String getAddress() {
@@ -47,5 +48,13 @@ public class Order {
 
     public void setTotal_price(String total_price) {
         this.total_price = total_price;
+    }
+
+    public String getDate() {
+        return Date;
+    }
+
+    public void setDate(String date) {
+        Date = date;
     }
 }
