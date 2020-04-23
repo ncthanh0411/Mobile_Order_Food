@@ -8,35 +8,23 @@
     tools:context=".activity_cart_history_detail"
     >
 
-    <LinearLayout
+    <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="#00B2BF">
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/btnBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_arrow_back_black_24dp"
-            app:backgroundTint="#00b2bf"
-            app:elevation="6dp"
-            app:layout_anchor="@id/app_bar_layout"
-            app:pressedTranslationZ="4dp"
-            app:useCompatPadding="true"/>
+        android:background="#00B2bf">
 
         <TextView
             android:id="@+id/tv_order_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_gravity="center_vertical"
             android:layout_weight="1"
             android:text="Order"
             android:layout_marginLeft="10dp"
             android:textColor="#FFFFFF"
             android:textStyle="bold"
             android:textSize="24sp" />
-    </LinearLayout>
+    </androidx.appcompat.widget.Toolbar>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_history_detail"

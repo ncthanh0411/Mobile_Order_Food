@@ -7,23 +7,11 @@
     android:orientation="vertical"
     tools:context=".activity_cart_history">
 
-    <LinearLayout
+
+    <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:background="#00B2BF">
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/btnBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_arrow_back_black_24dp"
-            app:backgroundTint="#00b2bf"
-            app:elevation="6dp"
-            app:layout_anchor="@id/app_bar_layout"
-            app:layout_anchorGravity="top|left|start"
-            app:pressedTranslationZ="4dp"
-            app:useCompatPadding="true" />
 
         <TextView
             android:layout_width="match_parent"
@@ -33,8 +21,11 @@
             android:layout_marginLeft="10dp"
             android:layout_gravity="center_vertical"
             android:textColor="#FFFFFF"
-            android:textStyle="bold"/>
-    </LinearLayout>
+            android:textStyle="bold" />
+    </androidx.appcompat.widget.Toolbar>
+
+
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_history"
