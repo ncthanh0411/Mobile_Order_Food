@@ -34,7 +34,6 @@ public class activity_cart_history_detail extends AppCompatActivity {
     custom_adapter_cart_history_detail adapter;
     ArrayList<FoodHistory> data;
     DatabaseReference mData;
-    FloatingActionButton btnBack;
     TextView textView_order;
     int order_count;
 
@@ -46,13 +45,6 @@ public class activity_cart_history_detail extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycler_view_history_detail);
         textView_order = findViewById(R.id.tv_order_name);
         initView();
-        btnBack = findViewById(R.id.btnBack);
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
     }
 
     private void initView() {

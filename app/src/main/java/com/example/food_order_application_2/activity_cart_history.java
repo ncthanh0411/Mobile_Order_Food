@@ -47,7 +47,6 @@ public class activity_cart_history extends AppCompatActivity {
     String user_ID;
 
     DatabaseReference databaseReference;
-    FloatingActionButton btn_back;
 
     ArrayList<Order> data;
     ArrayList<FoodHistory> data_cartFood;
@@ -67,13 +66,6 @@ public class activity_cart_history extends AppCompatActivity {
         user_ID = user.getUid();
 
         recyclerView = findViewById(R.id.recycler_view_history);
-        btn_back = findViewById(R.id.btnBack);
-        btn_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
         data = new ArrayList<>();
         id = new ArrayList<>();
         data_cartFood = new ArrayList<>();
