@@ -3,6 +3,7 @@ package com.example.food_order_application_2;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -34,17 +35,26 @@ public class activity_cart_history_detail extends AppCompatActivity {
     custom_adapter_cart_history_detail adapter;
     ArrayList<FoodHistory> data;
     DatabaseReference mData;
-    TextView textView_order;
+    Toolbar toolbar;
+
     int order_count;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart_history_detail);
-
+        toolbar = findViewById(R.id.tool_bar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         recyclerView = findViewById(R.id.recycler_view_history_detail);
-        textView_order = findViewById(R.id.tv_order_name);
         initView();
+
     }
 
     private void initView() {
@@ -54,7 +64,7 @@ public class activity_cart_history_detail extends AppCompatActivity {
         data = getIntent().getParcelableArrayListExtra("cart_food_detail");
         order_count = getIntent().getIntExtra("order_count",123);
         mData = FirebaseDatabase.getInstance().getReference("food_menu");
-        textView_order.setText("Order " + order_count);
+        getSupportActionBar().setTitle("Order " + order_count);
         mData.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

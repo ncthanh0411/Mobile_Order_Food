@@ -37,7 +37,7 @@ public class UserFragment extends Fragment {
     private TextView accountName, accountPhone, accountMail;
     private FirebaseAuth mAuthentication;
     DatabaseReference account;
-    Button btnSignout;
+    Button btnSignout,btnEdit;
     ImageView imageViewPhone,imageViewMap;
     private static final int REQUEST_CALL = 1;
 
@@ -50,8 +50,10 @@ public class UserFragment extends Fragment {
         accountPhone = view.findViewById(R.id.accountPhone);
         accountMail = view.findViewById(R.id.accountMail);
         btnSignout = view.findViewById(R.id.btnLogout);
+        btnEdit = view.findViewById(R.id.btnEdit);
         imageViewPhone = view.findViewById(R.id.imageViewPhone);
         imageViewMap = view.findViewById(R.id.imageViewMap);
+
 
         loadUserInformation();
         btnSignout.setOnClickListener(new View.OnClickListener() {
@@ -61,6 +63,13 @@ public class UserFragment extends Fragment {
                 Intent intent = new Intent(getActivity(), activity_Loginmenu.class);
                 startActivity(intent);
                 getActivity().finish();
+            }
+        });
+        btnEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), activity_editUser.class);
+                startActivity(intent);
             }
         });
         imageViewPhone.setOnClickListener(new View.OnClickListener() {

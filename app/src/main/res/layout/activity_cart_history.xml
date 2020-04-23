@@ -9,23 +9,13 @@
 
 
     <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#00B2BF">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Cart History"
-            android:textSize="24dp"
-            android:layout_marginLeft="10dp"
-            android:layout_gravity="center_vertical"
-            android:textColor="#FFFFFF"
-            android:textStyle="bold" />
-    </androidx.appcompat.widget.Toolbar>
-
-
-
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:titleTextColor="@color/colorWhite"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_history"

@@ -3,6 +3,7 @@ package com.example.food_order_application_2;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -45,8 +46,9 @@ public class activity_cart_history extends AppCompatActivity {
     custom_adapter_cart_history adapter;
 
     String user_ID;
-
+    Toolbar toolbar;
     DatabaseReference databaseReference;
+
 
     ArrayList<Order> data;
     ArrayList<FoodHistory> data_cartFood;
@@ -59,6 +61,13 @@ public class activity_cart_history extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart_history);
 
+        toolbar = findViewById(R.id.toolBar);
+        setSupportActionBar(toolbar);
+
+
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Order History");
         save_UserId = getIntent().getStringArrayListExtra("saveUserID");
 
         //Get Current UserID
@@ -66,6 +75,7 @@ public class activity_cart_history extends AppCompatActivity {
         user_ID = user.getUid();
 
         recyclerView = findViewById(R.id.recycler_view_history);
+
         data = new ArrayList<>();
         id = new ArrayList<>();
         data_cartFood = new ArrayList<>();
