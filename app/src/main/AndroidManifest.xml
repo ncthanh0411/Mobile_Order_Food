@@ -35,9 +35,9 @@
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps"></activity>
-        <activity android:name=".activity_cart_history_detail"/>
+        <activity android:name=".Menu.activity_cart_history_detail"/>
 
-        <activity android:name=".activity_cart_history" android:parentActivityName=".Menu.activity_menu" />
+        <activity android:name=".Menu.activity_cart_history" android:parentActivityName=".Menu.activity_menu" />
         <activity android:name=".ui.User.activity_editUser"/>
         <activity android:name=".activity_bottomNav" />
         <activity android:name=".Menu.activity_cart_detail" />

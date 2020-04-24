@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activity_cart_history">
+    tools:context=".Menu.activity_cart_history">
 
 
     <androidx.appcompat.widget.Toolbar

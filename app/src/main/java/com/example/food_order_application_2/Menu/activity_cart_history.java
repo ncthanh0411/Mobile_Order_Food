@@ -1,4 +1,4 @@
-package com.example.food_order_application_2;
+package com.example.food_order_application_2.Menu;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,17 +14,11 @@ import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.LinearLayout;
 
-import com.example.food_order_application_2.Model.User;
-import com.example.food_order_application_2.activity_cart_history_detail;
+import com.example.food_order_application_2.R;
 import com.example.food_order_application_2.Adapter.custom_adapter_cart_history;
-import com.example.food_order_application_2.Menu.activity_food_detail_demo;
-import com.example.food_order_application_2.Menu.activity_menu;
-import com.example.food_order_application_2.Model.Cart;
 import com.example.food_order_application_2.Model.FoodHistory;
 import com.example.food_order_application_2.Model.Order;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -32,13 +26,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 
 public class activity_cart_history extends AppCompatActivity {
 
