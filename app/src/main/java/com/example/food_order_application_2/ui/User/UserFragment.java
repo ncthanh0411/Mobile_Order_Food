@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,7 @@ import com.example.food_order_application_2.MapsActivity;
 import com.example.food_order_application_2.Model.User;
 import com.example.food_order_application_2.R;
 import com.example.food_order_application_2.Login_activity.activity_Loginmenu;
+import com.example.food_order_application_2.activity_profileImage;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.firebase.auth.FirebaseAuth;
@@ -32,13 +34,14 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 public class UserFragment extends Fragment {
     private TextView accountName, accountPhone, accountMail;
     private FirebaseAuth mAuthentication;
     DatabaseReference account;
     Button btnSignout,btnEdit;
-    ImageView imageViewPhone,imageViewMap;
+    ImageView imageViewPhone,imageViewMap, imageViewUser;
     private static final int REQUEST_CALL = 1;
 
 
@@ -53,9 +56,19 @@ public class UserFragment extends Fragment {
         btnEdit = view.findViewById(R.id.btnEdit);
         imageViewPhone = view.findViewById(R.id.imageViewPhone);
         imageViewMap = view.findViewById(R.id.imageViewMap);
+        imageViewUser = view.findViewById(R.id.imageViewUser);
 
 
         loadUserInformation();
+        imageViewUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), activity_profileImage.class);
+                startActivity(intent);
+            }
+        });
+
+
         btnSignout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -122,6 +135,12 @@ public class UserFragment extends Fragment {
                 accountName.setText(user.getName());
                 accountPhone.setText(user.getPhone());
                 accountMail.setText(user.getEmail());
+                Log.d("abcded",user.getImage());
+                String link = user.getImage();
+
+                if(!link.isEmpty()){
+                    Picasso.get().load(link).resizeDimen(R.dimen.image_size_user, R.dimen.image_size_user).into(imageViewUser);
+                }
 
             }
 

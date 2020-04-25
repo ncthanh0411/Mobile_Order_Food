@@ -7,19 +7,23 @@ public class User implements Parcelable {
     private String Name;
     private String Email;
     private String Phone;
+    String Image;
+
     public User() {
     }
 
-    public User(String name, String email, String phone) {
+    public User(String name, String email, String phone, String image) {
         Name = name;
         Email = email;
         Phone = phone;
+        Image = image;
     }
 
     protected User(Parcel in) {
         Name = in.readString();
         Email = in.readString();
         Phone = in.readString();
+        Image =in.readString();
     }
 
     public static final Creator<User> CREATOR = new Creator<User>() {
@@ -58,6 +62,14 @@ public class User implements Parcelable {
         Phone = phone;
     }
 
+    public String getImage() {
+        return Image;
+    }
+
+    public void setImage(String image) {
+        Image = image;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -68,5 +80,6 @@ public class User implements Parcelable {
         dest.writeString(Name);
         dest.writeString(Email);
         dest.writeString(Phone);
+        dest.writeString(Image);
     }
 }

@@ -107,7 +107,7 @@ public class activity_Login_signup extends AppCompatActivity {
                                 Toast.makeText(activity_Login_signup.this, "This phone has already been registered", Toast.LENGTH_LONG).show();
                             }
                             else {
-                                account = new User(name.getText().toString(),mail.getText().toString(),phoneNumber);
+                                account = new User(name.getText().toString(),mail.getText().toString(),phoneNumber, "");
                                 Intent intent = new Intent(activity_Login_signup.this,activity_VerifyPhone.class);
                                 intent.putExtra("phoneNumberSignup",phoneNumber);
                                 intent.putExtra("user", account);

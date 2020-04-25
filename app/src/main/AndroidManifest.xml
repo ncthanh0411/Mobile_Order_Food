@@ -11,6 +11,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -40,6 +41,7 @@
         <activity android:name=".activity_cart_history" android:parentActivityName=".Menu.activity_menu" />
         <activity android:name=".ui.User.activity_editUser"/>
         <activity android:name=".activity_bottomNav" />
+        <activity android:name=".activity_profileImage" />
         <activity android:name=".Menu.activity_cart_detail" />
         <activity android:name=".Menu.activity_food_detail_demo" />
         <activity android:name=".Menu.activity_menu" />

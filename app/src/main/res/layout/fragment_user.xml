@@ -21,15 +21,20 @@
             android:background="@drawable/profile"
             android:orientation="vertical">
 
-
-            <ImageView
-                android:layout_marginTop="10dp"
+            <androidx.cardview.widget.CardView
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                android:src="@drawable/ic_account_box_black_24dp"
+                android:layout_marginTop="10dp"
                 android:layout_gravity="center"
-                android:background="@color/colorWhite"/>
-
+                android:background="@color/colorWhite"
+                app:cardCornerRadius="100dp">
+            <ImageView
+                android:id="@+id/imageViewUser"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_account_box_black_24dp" />
+            </androidx.cardview.widget.CardView>
             <TextView
                 android:id="@+id/accountName"
                 android:layout_width="wrap_content"
@@ -199,9 +204,10 @@
         android:layout_marginBottom="10dp"
         android:text="Edit info"
        />
+
     <Button
         android:id="@+id/btnLogout"
-        android:layout_width="500px"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center"
         android:layout_marginBottom="10dp"
