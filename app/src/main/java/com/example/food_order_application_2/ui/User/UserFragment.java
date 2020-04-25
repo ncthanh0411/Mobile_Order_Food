@@ -1,6 +1,8 @@
 package com.example.food_order_application_2.ui.User;
 
 import android.Manifest;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -41,7 +43,7 @@ public class UserFragment extends Fragment {
     private FirebaseAuth mAuthentication;
     DatabaseReference account;
     Button btnSignout,btnEdit;
-    ImageView imageViewPhone,imageViewMap, imageViewUser;
+    ImageView imageViewPhone,imageViewMap, imageViewUser, imageViewInfo;
     private static final int REQUEST_CALL = 1;
 
 
@@ -57,7 +59,7 @@ public class UserFragment extends Fragment {
         imageViewPhone = view.findViewById(R.id.imageViewPhone);
         imageViewMap = view.findViewById(R.id.imageViewMap);
         imageViewUser = view.findViewById(R.id.imageViewUser);
-
+        imageViewInfo = view.findViewById(R.id.imageViewInfo);
 
         loadUserInformation();
         imageViewUser.setOnClickListener(new View.OnClickListener() {
@@ -99,8 +101,32 @@ public class UserFragment extends Fragment {
                 startActivity(intent);
             }
         });
+        imageViewInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openDialog();
+            }
+        });
+
         return view;
     }
+
+    private void openDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("Information Of App")
+                .setMessage("TST Food app was built by TST group." +
+                        "517H0084: Nguyễn Công Thành   "+ "517H0090: Lê Ngọc Khánh Toàn  " +
+                        "517H0079: Nguyễn Bảo Hoàng Sang")
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
+
     private void makePhoneCall(){
         if(ContextCompat.checkSelfPermission(getContext(), Manifest.permission.CALL_PHONE)
         != PackageManager.PERMISSION_GRANTED){

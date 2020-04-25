@@ -96,7 +96,7 @@
                 <androidx.cardview.widget.CardView
                     android:id="@+id/parent_layout2"
                     android:layout_width="match_parent"
-                    android:layout_height="140dp"
+                    android:layout_height="170dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
@@ -105,25 +105,40 @@
                     app:cardElevation="0dp">
 
                     <ImageView
-                        android:id="@+id/image_view2"
+                        android:id="@+id/image_viewDiscount"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:scaleType="centerCrop"
                         android:src="@drawable/chicken"
-                        tools:ignore="ContentDescription" />
+                        tools:ignore="ContentDescription"
+                        android:tint="#6F000000"/>
 
                     <Button
-                        android:id="@+id/btnOrder2"
+                        android:id="@+id/btnOrderDiscount"
                         android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:layout_marginLeft="12dp"
-                        android:layout_marginTop="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginBottom="10dp"
                         android:background="@drawable/customs_button"
                         android:paddingLeft="10dp"
                         android:paddingRight="10dp"
                         android:text="Order Now!"
                         android:textColor="@color/textColors"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:layout_gravity="bottom"/>
+                        />
+
+                    <TextView
+                        android:id="@+id/textView7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Fried Chicken"
+                        android:textColor="@color/colorWhite"
+                        android:textStyle="bold"
+                        android:layout_gravity="top|end"
+                        android:textSize="30sp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginTop="20dp"/>
                 </androidx.cardview.widget.CardView>
 
                 <TextView
@@ -141,7 +156,7 @@
                 <androidx.cardview.widget.CardView
                     android:id="@+id/parent_layout3"
                     android:layout_width="match_parent"
-                    android:layout_height="140dp"
+                    android:layout_height="170dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
@@ -150,25 +165,38 @@
                     app:cardElevation="0dp">
 
                     <ImageView
-                        android:id="@+id/image_view3"
+                        android:id="@+id/image_viewSeller"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:scaleType="centerCrop"
                         android:src="@drawable/soup"
-                        tools:ignore="ContentDescription" />
+                        tools:ignore="ContentDescription"
+                        android:tint="#6F000000"/>
 
                     <Button
-                        android:id="@+id/btnOrder3"
+                        android:id="@+id/btnOrderSeller"
                         android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:layout_marginLeft="12dp"
-                        android:layout_marginTop="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginBottom="10dp"
                         android:background="@drawable/customs_button"
                         android:paddingLeft="10dp"
                         android:paddingRight="10dp"
                         android:text="Order Now!"
                         android:textColor="@color/textColors"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:layout_gravity="bottom"/>
+                    <TextView
+                        android:id="@+id/textView8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="King Crab"
+                        android:textColor="@color/colorWhite"
+                        android:textStyle="bold"
+                        android:layout_gravity="top|end"
+                        android:textSize="30sp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginTop="20dp"/>
                 </androidx.cardview.widget.CardView>
 
                 <TextView
@@ -186,7 +214,7 @@
                 <androidx.cardview.widget.CardView
                     android:id="@+id/parent_layout4"
                     android:layout_width="match_parent"
-                    android:layout_height="140dp"
+                    android:layout_height="170dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
@@ -195,25 +223,38 @@
                     app:cardElevation="0dp">
 
                     <ImageView
-                        android:id="@+id/image_view4"
+                        android:id="@+id/image_viewRecommend"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:scaleType="centerCrop"
                         android:src="@drawable/beef"
-                        tools:ignore="ContentDescription" />
+                        tools:ignore="ContentDescription"
+                        android:tint="#6F000000"/>
 
                     <Button
-                        android:id="@+id/btnOrder4"
+                        android:id="@+id/btnOrderRecommend"
                         android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:layout_marginLeft="12dp"
-                        android:layout_marginTop="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginBottom="10dp"
                         android:background="@drawable/customs_button"
                         android:paddingLeft="10dp"
                         android:paddingRight="10dp"
                         android:text="Order Now!"
                         android:textColor="@color/textColors"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:layout_gravity="bottom"/>
+                    <TextView
+                        android:id="@+id/textView9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Beef Steak"
+                        android:textColor="@color/colorWhite"
+                        android:textStyle="bold"
+                        android:layout_gravity="top|end"
+                        android:textSize="30sp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginTop="20dp"/>
                 </androidx.cardview.widget.CardView>
 
             </LinearLayout>

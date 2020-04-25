@@ -90,6 +90,7 @@ public class activity_menu extends Fragment {
         return view;
     }
 
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -149,7 +150,6 @@ public class activity_menu extends Fragment {
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 //Add Id to key
                 String keys = dataSnapshot.getKey();
-                Log.d("qweasd",dataSnapshot.getKey());
                 save_UserId.add(dataSnapshot.getKey());
                 key.add(keys);
                 //retrieve value from firebase
