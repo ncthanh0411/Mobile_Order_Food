@@ -1,27 +1,17 @@
-package com.example.food_order_application_2;
+package com.example.food_order_application_2.Menu;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.food_order_application_2.Adapter.CustomAdapter;
-import com.example.food_order_application_2.Menu.activity_food_detail_demo;
-import com.example.food_order_application_2.Menu.activity_menu;
 import com.example.food_order_application_2.Model.FoodHistory;
-import com.example.food_order_application_2.Model.food;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.database.ChildEventListener;
+import com.example.food_order_application_2.R;
+import com.example.food_order_application_2.Adapter.custom_adapter_cart_history_detail;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

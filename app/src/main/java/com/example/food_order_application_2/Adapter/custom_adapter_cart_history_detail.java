@@ -1,24 +1,22 @@
-package com.example.food_order_application_2;
+package com.example.food_order_application_2.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.food_order_application_2.Adapter.custom_adapter_cart_history;
 import com.example.food_order_application_2.Model.FoodHistory;
-import com.example.food_order_application_2.Model.Order;
+import com.example.food_order_application_2.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-class custom_adapter_cart_history_detail extends RecyclerView.Adapter<custom_adapter_cart_history_detail.myViewHolder>{
+public class custom_adapter_cart_history_detail extends RecyclerView.Adapter<custom_adapter_cart_history_detail.myViewHolder>{
     private Context context;
     private ArrayList<FoodHistory> data;
 

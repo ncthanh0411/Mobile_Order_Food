@@ -18,12 +18,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.food_order_application_2.Adapter.CustomAdapter;
-import com.example.food_order_application_2.Menu.activity_cart_detail;
-import com.example.food_order_application_2.Menu.activity_food_detail_demo;
 import com.example.food_order_application_2.Model.Cart;
 import com.example.food_order_application_2.Model.food;
 import com.example.food_order_application_2.R;
-import com.example.food_order_application_2.activity_cart_history;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
