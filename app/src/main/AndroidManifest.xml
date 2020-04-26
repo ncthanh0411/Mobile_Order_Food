@@ -34,14 +34,14 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".MapsActivity"
+            android:name=".ui.User.MapsActivity"
             android:label="@string/title_activity_maps"></activity>
         <activity android:name=".Menu.activity_cart_history_detail"/>
 
         <activity android:name=".Menu.activity_cart_history" android:parentActivityName=".Menu.activity_menu" />
         <activity android:name=".ui.User.activity_editUser"/>
         <activity android:name=".activity_bottomNav" />
-        <activity android:name=".activity_profileImage" />
+        <activity android:name=".ui.User.activity_profileImage" />
         <activity android:name=".Menu.activity_cart_detail" />
         <activity android:name=".Menu.activity_food_detail_demo" />
         <activity android:name=".Menu.activity_menu" />

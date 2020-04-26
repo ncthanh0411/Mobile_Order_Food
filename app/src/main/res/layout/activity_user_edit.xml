@@ -9,7 +9,14 @@
     android:orientation="vertical"
     tools:context=".ui.User.activity_editUser">
 
-
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ToolbarColoredBackArrow"
+        app:titleTextColor="#000000"/>
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -1,10 +1,11 @@
-package com.example.food_order_application_2;
+package com.example.food_order_application_2.ui.User;
 
 import androidx.fragment.app.FragmentActivity;
 
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.food_order_application_2.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;

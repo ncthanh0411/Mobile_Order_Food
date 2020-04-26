@@ -22,13 +22,9 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
-import com.example.food_order_application_2.MapsActivity;
 import com.example.food_order_application_2.Model.User;
 import com.example.food_order_application_2.R;
 import com.example.food_order_application_2.Login_activity.activity_Loginmenu;
-import com.example.food_order_application_2.activity_profileImage;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
